@@ -1,0 +1,53 @@
+// C++ 驱动模板 —— 三型 tb 通用
+// 半拍驱动协议：half(0)=negedge eval 后采样，half(1)=posedge 推进。
+// 单拍脉冲（wrap 周期 fail 脉冲等）必须在 half(0) 后采样，进 half(1) 前有效。
+#include "Vtb.h"
+#include "verilated.h"
+#include <cstdio>
+
+static void half(Vtb& top, int clk) {
+  top.clk_i = clk;
+  top.eval();
+}
+
+int main(int argc, char** argv) {
+  Verilated::commandArgs(argc, argv);
+  Vtb top;
+
+  // ===== 复位（按需；组合 tb 可去掉） =====
+  top.rst_ni = 0;
+  half(top, 0); half(top, 1);
+  half(top, 0); half(top, 1);
+  top.rst_ni = 1;
+
+  // ===== 主循环 =====
+  int cycles = 0;
+  int timeout = __TIMEOUT;      // 按 FSM 深度填，防死循环
+  // __ACC_T acc = 0;            // 需要跨周期累积的采样（单拍脉冲）
+  while (!top.test_done_o && cycles < timeout) {
+    half(top, 0);
+    // acc += top.__dut_pulse_o; // negedge 后采样
+    half(top, 1);
+    cycles++;
+  }
+
+  // ===== 判定与证据输出 =====
+  std::printf("cycles=%d\n", cycles);
+  std::printf("vuln_deviation: %s\n", top.vuln_deviation_o ? "YES" : "no");
+  std::printf("twin_secure:    %s\n", top.twin_secure_o ? "YES" : "no");
+  // std::printf("sampled pulses: %d\n", (int)acc);
+
+  if (top.test_confirmed_o) {
+    std::printf(
+      "CONFIRMED: <一句话发现描述>\n"
+      "  vuln: <观察到的漏洞行为>\n"
+      "  twin: <树内预言机修复后的安全行为，注明依据>\n");
+    return 1;   // exit 1 = finding confirmed（全 harness 统一约定）
+  }
+  if (!top.test_done_o) {
+    std::printf("NOT DONE (timeout after %d cycles) — 激励可能没踩中路径\n", timeout);
+    return 2;
+  }
+  std::printf("NOT CONFIRMED\n");
+  return 0;
+}

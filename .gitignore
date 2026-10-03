@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.DS_Store
+*.swp
+*~
+**/runs/
+**/workdir/poc/
+**/workdir/submissions/
+**/workdir/artifacts/
+!**/workdir/.gitkeep

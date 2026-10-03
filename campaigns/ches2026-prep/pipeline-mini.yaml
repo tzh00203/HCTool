@@ -1,0 +1,25 @@
+# 冒烟流水线：单 IP（lc_ctrl）scout→hunter 串
+# 用途：验证 tmux 窗口启动、complete.marker 触发、findings 产出、offline 生效。
+# 跑法：cd 本目录 && lt run -f flow-mini.yaml
+name: smoke-lc-ctrl
+env:
+  OT_TREE: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind
+  VERILATOR: /data_hdd/tzh24/zgc4/projects/tools/logos/logos-workspace/contexts/targets/opentitan-ches2026/runtime-samples/verilator-4.210/v4.210
+  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite
+nodes:
+  oracle-scout-lc_ctrl:
+    agent: oracle-scout
+    task: '盘点 IP lc_ctrl 的全部树内预言机（RTL: $OT_TREE/hw/ip/lc_ctrl/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md，每条预言机带 file:line 且可检验。'
+    offline: true
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+  hunter-lc_ctrl:
+    agent: hunter
+    deps: [oracle-scout-lc_ctrl]
+    task: '对 IP lc_ctrl 执行 6-lens 盲猎（$OT_TREE/hw/ip/lc_ctrl/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/lc_ctrl/candidates.md。'
+    offline: true
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md

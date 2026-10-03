@@ -1,0 +1,201 @@
+# dyn-verify upgrade — 由 scripts/gen_upgrade_flow.py 生成
+# 16 个 GT 外 L3/L4 VULN 证据升级，4 阶段 × 4 并行
+name: dyn-verify-upgrade
+control: false
+env:
+  OT_TREE: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind
+  VERILATOR: /data_hdd/tzh24/zgc4/projects/tools/logos/logos-workspace/contexts/targets/opentitan-ches2026/runtime-samples/verilator-4.210/v4.210
+  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite
+nodes:
+  dyn-verifier-VULN-043:
+    agent: dyn-verifier
+    deps: []
+    task: '证据升级 VULN-043（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-043/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-043/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-043/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-049:
+    agent: dyn-verifier
+    deps: []
+    task: '证据升级 VULN-049（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-049/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-049/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-049/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-054:
+    agent: dyn-verifier
+    deps: []
+    task: '证据升级 VULN-054（当前 L3）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-054/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-054/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-054/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-057:
+    agent: dyn-verifier
+    deps: []
+    task: '证据升级 VULN-057（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-057/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-057/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-057/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-062:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-043, dyn-verifier-VULN-049, dyn-verifier-VULN-054, dyn-verifier-VULN-057]
+    task: '证据升级 VULN-062（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-062/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-062/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-062/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-063:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-043, dyn-verifier-VULN-049, dyn-verifier-VULN-054, dyn-verifier-VULN-057]
+    task: '证据升级 VULN-063（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-063/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-063/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-063/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-074:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-043, dyn-verifier-VULN-049, dyn-verifier-VULN-054, dyn-verifier-VULN-057]
+    task: '证据升级 VULN-074（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-074/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-074/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-074/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-076:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-043, dyn-verifier-VULN-049, dyn-verifier-VULN-054, dyn-verifier-VULN-057]
+    task: '证据升级 VULN-076（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-076/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-076/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-076/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-082:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-062, dyn-verifier-VULN-063, dyn-verifier-VULN-074, dyn-verifier-VULN-076]
+    task: '证据升级 VULN-082（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-082/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-082/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-082/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-079:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-062, dyn-verifier-VULN-063, dyn-verifier-VULN-074, dyn-verifier-VULN-076]
+    task: '证据升级 VULN-079（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-079/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-079/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-079/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-067:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-062, dyn-verifier-VULN-063, dyn-verifier-VULN-074, dyn-verifier-VULN-076]
+    task: '证据升级 VULN-067（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-067/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-067/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-067/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-064:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-062, dyn-verifier-VULN-063, dyn-verifier-VULN-074, dyn-verifier-VULN-076]
+    task: '证据升级 VULN-064（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-064/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-064/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-064/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-031:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-082, dyn-verifier-VULN-079, dyn-verifier-VULN-067, dyn-verifier-VULN-064]
+    task: '证据升级 VULN-031（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-031/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-031/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-031/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-032:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-082, dyn-verifier-VULN-079, dyn-verifier-VULN-067, dyn-verifier-VULN-064]
+    task: '证据升级 VULN-032（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-032/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-032/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-032/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-042:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-082, dyn-verifier-VULN-079, dyn-verifier-VULN-067, dyn-verifier-VULN-064]
+    task: '证据升级 VULN-042（当前 L3）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-042/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-042/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-042/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-048:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-082, dyn-verifier-VULN-079, dyn-verifier-VULN-067, dyn-verifier-VULN-064]
+    task: '证据升级 VULN-048（当前 L4）。升级工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-048/skill.md。读原工单+原 RESULT.md+升级工单→拆分子 claim→可仿真部分建 micro-tb 差分、声明缺失做脚本证明→在 RESULT.md 追加 Upgrade 段落。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills-upgrade/VULN-048/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/VULN-048/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md

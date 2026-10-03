@@ -1,0 +1,70 @@
+// negedge-FSM 时序 tb 模板 —— FSM/数据通路/SEC_WIPE 类发现（L1 执行级实证）
+// 参考: examples/entropy_markov（单拍脉冲采样）、examples/aes_core（XMR 探针）
+// Verilator 4.210 约束：每个 initial/always 只允许一个时序控制 → 全部激励走本 FSM。
+module tb (
+  input  logic clk_i,
+  input  logic rst_ni,
+  output logic test_done_o,
+  output logic vuln_deviation_o,
+  output logic twin_secure_o,
+  output logic test_confirmed_o,
+  // 可选：暴露 DUT 原始信号给 C++ 采样（flop 顺序竞态时必须走这条路）
+  output logic __dut_pulse_o
+);
+
+  // ===== DUT 实例 ×2：vuln + twin，同一激励 =====
+  // logic [__W-1:0] stimuli = '0;
+  // dut_pkg_target u_vuln (.clk_i, .rst_ni, .in(stimuli), .out(v_out));
+  // dut_pkg_target_twin u_twin (.clk_i, .rst_ni, .in(stimuli), .out(t_out));
+  // XMR 探针（generate 循环内也行）:
+  // assign __dut_pulse_o = u_vuln.fail_pulse;
+
+  // ===== 激励/监视 FSM（negedge 驱动） =====
+  typedef enum int {
+    S_RST, S_SETUP, S_DRIVE, S_SETTLE, S_CHECK, S_DONE
+  } state_e;
+  state_e state = S_RST;
+  int n = 0;
+
+  localparam int SETTLE_CYCLES = __N;   // 按 FSM 深度填
+  logic vuln_bad = 1'b0;
+  logic twin_ok  = 1'b0;
+
+  always_ff @(negedge clk_i or negedge rst_ni) begin
+    if (!rst_ni) begin
+      state <= S_SETUP;
+      n <= 0;
+      // stimuli <= '0;
+    end else begin
+      case (state)
+        S_SETUP: begin
+          // 填：配置 DUT（复位后初始化，如载入密钥/阈值）
+          // stimuli <= __INIT;
+          state <= S_DRIVE;
+        end
+        S_DRIVE: begin
+          // 填：触发疑点路径（如 pulse trigger 位 / 注入错误脉冲）
+          state <= S_SETTLE;
+          n <= 0;
+        end
+        S_SETTLE: begin
+          // 填：单拍事件在这里采样（negedge 后稳定，posedge 前有效）
+          // if (__dut_pulse) vuln_cnt <= vuln_cnt + 1;
+          n <= n + 1;
+          if (n >= SETTLE_CYCLES) state <= S_CHECK;
+        end
+        S_CHECK: begin
+          // 填：终态判定（对照 hjson/注释的预期行为）
+          // vuln_bad <= (v_out != __EXPECTED);
+          // twin_ok  <= (t_out == __EXPECTED);
+          state <= S_DONE;
+        end
+        S_DONE: begin
+          test_done_o <= 1'b1;  // 若用 always_ff，初值在声明处给
+        end
+      endcase
+    end
+  end
+
+  assign test_confirmed_o = vuln_bad && twin_ok && test_done_o;
+endmodule

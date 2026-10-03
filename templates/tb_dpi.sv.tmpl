@@ -1,0 +1,36 @@
+// DPI 差分 tb 模板 —— 密码功能洞（L1 执行级实证，对照树内 vendored C 参考）
+// 参考: examples/ascon（全流程样板：ascon_dpi_ref.c + ascon_ref_dpi_pkg.sv + 6 配置矩阵）
+// 前置：树内参考 C 代码在 prim dv/ 下（如 hw/ip/prim/dv/prim_ascon/ascon_model_dpi/vendor/）
+module tb (
+  input  logic clk_i,
+  output logic test_done_o,
+  output int       n_fail_o,       // 失败配置数
+  output logic test_confirmed_o    // n_fail > 0 且控制配置通过
+);
+
+  // ===== DPI 导入（参考实现包，见 examples/ascon/ascon_ref_dpi_pkg.sv） =====
+  // import ascon_ref_dpi_pkg::*;
+  // 函数签名按参考 C 实现 wrap，例:
+  // import "DPI-C" function void ref_crypto_aead(
+  //   output byte unsigned ct[], output byte unsigned tag[],
+  //   input  byte unsigned npub[], input  byte unsigned key[],
+  //   input  byte unsigned ad[],  input  byte unsigned msg[],
+  //   input  int clen, input  int decrypt);
+
+  // ===== DUT 驱动（按 reg2hw 结构体当 SW，参考 examples/ascon_core） =====
+  // negedge FSM: 载 key/nonce → 喂 AD/msg → 收 ct/tag
+
+  // ===== 差分矩阵（至少: 算法变体 × ENC/DEC × 边界长度） =====
+  // 每配置: DUT 输出 vs C 参考 byte-by-byte
+  // "哪个配置挂、哪个过" 用于隔离坏的 FSM 分支（ascon-128a 就这样定位到
+  //   AbsorbMSG-ENC 与 AbsorbADEmpty 两个分支）
+
+  // ===== 判定 =====
+  // 控制配置必须 PASS（tb 本身没坏），目标配置 FAIL = 确认
+  assign test_confirmed_o = (n_fail_o > 0) && control_passed && test_done_o;
+
+  logic control_passed = 1'b0; // 第一个配置跑完置 1
+  assign test_done_o = 1'b0;   // FSM 完成时置 1
+
+  // 注意 DPI 的 .c 用 gcc 编译（不是 verilator 的 C++），传绝对 .o 路径
+endmodule

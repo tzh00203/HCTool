@@ -1,0 +1,31 @@
+#!/bin/bash
+# Verilator 4.210 构建模板 —— 文件顺序敏感: packages → prim → DUT叶子 → twin → tb → cpp
+# 参考: examples/entropy_markov/build_markov.sh（leaf 级）、examples/aes_core/build_aes_wipe.sh（~45 文件）
+set -u
+OT=${OT_TREE:?需要 OT_TREE 环境变量（目标 OpenTitan 树）}
+VD=${VERILATOR_ROOT:?需要 VERILATOR_ROOT（verilator-4.210 安装目录）}
+D="$(cd "$(dirname "$0")" && pwd)"
+rm -rf "$D/obj"; mkdir -p "$D/obj"
+
+# 文件清单（顺序！）—— prim 技术单元用 ibex dv 版:
+PRIM_DV="$OT/hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/common/prim"
+
+$VD/bin/verilator --cc --exe -Wno-fatal -Wno-DECLFILENAME -Wno-UNOPTFLAT \
+  --top-module tb -Mdir "$D/obj" \
+  -I"$OT/hw/ip/prim/rtl" \
+  "$OT/hw/ip/prim/rtl/prim_util_pkg.sv" \
+  "$OT/hw/ip/prim/rtl/prim_mubi_pkg.sv" \
+  # __PACKAGES（含 stub，stub 在 import 者之前）
+  # __PRIM_PRIMITIVES
+  # __DUT_LEAF
+  # "$D/__module_twin.sv"
+  # __DPI_OBJS（若有 .c 参考实现：gcc -c 出绝对 .o 路径放这里）
+  # "$D/tb___slug.sv" "$D/sim_main.cpp"
+  > "$D/obj/verilate.log" 2>&1 || { echo VERILATE FAILED; tail -20 "$D/obj/verilate.log"; exit 1; }
+
+sed -i "s|VERILATOR_ROOT = .*|VERILATOR_ROOT = $VD/share/verilator|" "$D/obj/Vtb.mk"
+make -s -C "$D/obj" -f Vtb.mk > "$D/obj/make.log" 2>&1 || { echo MAKE FAILED; tail -20 "$D/obj/make.log"; exit 1; }
+"$D/obj/Vtb"
+rc=$?
+echo "exit code: $rc (1 = finding confirmed)"
+exit $rc

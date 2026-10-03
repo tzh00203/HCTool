@@ -1,0 +1,867 @@
+# dyn-verify backlog — 由 scripts/gen_backlog_flow.py 生成
+# VULN-005~082（78 节点），needs 批次屏障 → 每阶段 ≤4 并行
+name: dyn-verify-backlog
+control: false
+env:
+  OT_TREE: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind
+  VERILATOR: /data_hdd/tzh24/zgc4/projects/tools/logos/logos-workspace/contexts/targets/opentitan-ches2026/runtime-samples/verilator-4.210/v4.210
+  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite
+nodes:
+  dyn-verifier-VULN-005:
+    agent: dyn-verifier
+    deps: []
+    task: '动态验证 VULN-005。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-005/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-005/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-006:
+    agent: dyn-verifier
+    deps: []
+    task: '动态验证 VULN-006。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-006/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-006/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-007:
+    agent: dyn-verifier
+    deps: []
+    task: '动态验证 VULN-007。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-007/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-007/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-008:
+    agent: dyn-verifier
+    deps: []
+    task: '动态验证 VULN-008。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-008/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-008/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-009:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-005, dyn-verifier-VULN-006, dyn-verifier-VULN-007, dyn-verifier-VULN-008]
+    task: '动态验证 VULN-009。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-009/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-009/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-010:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-005, dyn-verifier-VULN-006, dyn-verifier-VULN-007, dyn-verifier-VULN-008]
+    task: '动态验证 VULN-010。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-010/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-010/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-011:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-005, dyn-verifier-VULN-006, dyn-verifier-VULN-007, dyn-verifier-VULN-008]
+    task: '动态验证 VULN-011。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-011/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-011/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-012:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-005, dyn-verifier-VULN-006, dyn-verifier-VULN-007, dyn-verifier-VULN-008]
+    task: '动态验证 VULN-012。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-012/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-012/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-013:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-009, dyn-verifier-VULN-010, dyn-verifier-VULN-011, dyn-verifier-VULN-012]
+    task: '动态验证 VULN-013。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-013/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-013/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-014:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-009, dyn-verifier-VULN-010, dyn-verifier-VULN-011, dyn-verifier-VULN-012]
+    task: '动态验证 VULN-014。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-014/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-014/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-015:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-009, dyn-verifier-VULN-010, dyn-verifier-VULN-011, dyn-verifier-VULN-012]
+    task: '动态验证 VULN-015。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-015/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-015/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-016:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-009, dyn-verifier-VULN-010, dyn-verifier-VULN-011, dyn-verifier-VULN-012]
+    task: '动态验证 VULN-016。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-016/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-016/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-017:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-013, dyn-verifier-VULN-014, dyn-verifier-VULN-015, dyn-verifier-VULN-016]
+    task: '动态验证 VULN-017。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-017/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-017/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-018:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-013, dyn-verifier-VULN-014, dyn-verifier-VULN-015, dyn-verifier-VULN-016]
+    task: '动态验证 VULN-018。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-018/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-018/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-019:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-013, dyn-verifier-VULN-014, dyn-verifier-VULN-015, dyn-verifier-VULN-016]
+    task: '动态验证 VULN-019。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-019/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-019/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-020:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-013, dyn-verifier-VULN-014, dyn-verifier-VULN-015, dyn-verifier-VULN-016]
+    task: '动态验证 VULN-020。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-020/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-020/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-021:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-017, dyn-verifier-VULN-018, dyn-verifier-VULN-019, dyn-verifier-VULN-020]
+    task: '动态验证 VULN-021。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-021/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-021/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-022:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-017, dyn-verifier-VULN-018, dyn-verifier-VULN-019, dyn-verifier-VULN-020]
+    task: '动态验证 VULN-022。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-022/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-022/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-023:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-017, dyn-verifier-VULN-018, dyn-verifier-VULN-019, dyn-verifier-VULN-020]
+    task: '动态验证 VULN-023。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-023/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-023/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-024:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-017, dyn-verifier-VULN-018, dyn-verifier-VULN-019, dyn-verifier-VULN-020]
+    task: '动态验证 VULN-024。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-024/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-024/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-025:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-021, dyn-verifier-VULN-022, dyn-verifier-VULN-023, dyn-verifier-VULN-024]
+    task: '动态验证 VULN-025。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-025/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-025/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-026:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-021, dyn-verifier-VULN-022, dyn-verifier-VULN-023, dyn-verifier-VULN-024]
+    task: '动态验证 VULN-026。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-026/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-026/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-027:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-021, dyn-verifier-VULN-022, dyn-verifier-VULN-023, dyn-verifier-VULN-024]
+    task: '动态验证 VULN-027。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-027/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-027/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-028:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-021, dyn-verifier-VULN-022, dyn-verifier-VULN-023, dyn-verifier-VULN-024]
+    task: '动态验证 VULN-028。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-028/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-028/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-029:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-025, dyn-verifier-VULN-026, dyn-verifier-VULN-027, dyn-verifier-VULN-028]
+    task: '动态验证 VULN-029。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-029/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-029/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-030:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-025, dyn-verifier-VULN-026, dyn-verifier-VULN-027, dyn-verifier-VULN-028]
+    task: '动态验证 VULN-030。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-030/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-030/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-031:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-025, dyn-verifier-VULN-026, dyn-verifier-VULN-027, dyn-verifier-VULN-028]
+    task: '动态验证 VULN-031。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-031/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-031/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-032:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-025, dyn-verifier-VULN-026, dyn-verifier-VULN-027, dyn-verifier-VULN-028]
+    task: '动态验证 VULN-032。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-032/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-032/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-033:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-029, dyn-verifier-VULN-030, dyn-verifier-VULN-031, dyn-verifier-VULN-032]
+    task: '动态验证 VULN-033。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-033/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-033/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-034:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-029, dyn-verifier-VULN-030, dyn-verifier-VULN-031, dyn-verifier-VULN-032]
+    task: '动态验证 VULN-034。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-034/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-034/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-035:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-029, dyn-verifier-VULN-030, dyn-verifier-VULN-031, dyn-verifier-VULN-032]
+    task: '动态验证 VULN-035。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-035/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-035/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-036:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-029, dyn-verifier-VULN-030, dyn-verifier-VULN-031, dyn-verifier-VULN-032]
+    task: '动态验证 VULN-036。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-036/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-036/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-037:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-033, dyn-verifier-VULN-034, dyn-verifier-VULN-035, dyn-verifier-VULN-036]
+    task: '动态验证 VULN-037。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-037/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-037/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-038:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-033, dyn-verifier-VULN-034, dyn-verifier-VULN-035, dyn-verifier-VULN-036]
+    task: '动态验证 VULN-038。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-038/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-038/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-039:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-033, dyn-verifier-VULN-034, dyn-verifier-VULN-035, dyn-verifier-VULN-036]
+    task: '动态验证 VULN-039。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-039/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-039/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-040:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-033, dyn-verifier-VULN-034, dyn-verifier-VULN-035, dyn-verifier-VULN-036]
+    task: '动态验证 VULN-040。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-040/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-040/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-041:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-037, dyn-verifier-VULN-038, dyn-verifier-VULN-039, dyn-verifier-VULN-040]
+    task: '动态验证 VULN-041。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-041/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-041/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-042:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-037, dyn-verifier-VULN-038, dyn-verifier-VULN-039, dyn-verifier-VULN-040]
+    task: '动态验证 VULN-042。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-042/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-042/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-043:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-037, dyn-verifier-VULN-038, dyn-verifier-VULN-039, dyn-verifier-VULN-040]
+    task: '动态验证 VULN-043。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-043/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-043/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-044:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-037, dyn-verifier-VULN-038, dyn-verifier-VULN-039, dyn-verifier-VULN-040]
+    task: '动态验证 VULN-044。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-044/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-044/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-045:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-041, dyn-verifier-VULN-042, dyn-verifier-VULN-043, dyn-verifier-VULN-044]
+    task: '动态验证 VULN-045。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-045/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-045/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-046:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-041, dyn-verifier-VULN-042, dyn-verifier-VULN-043, dyn-verifier-VULN-044]
+    task: '动态验证 VULN-046。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-046/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-046/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-047:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-041, dyn-verifier-VULN-042, dyn-verifier-VULN-043, dyn-verifier-VULN-044]
+    task: '动态验证 VULN-047。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-047/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-047/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-048:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-041, dyn-verifier-VULN-042, dyn-verifier-VULN-043, dyn-verifier-VULN-044]
+    task: '动态验证 VULN-048。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-048/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-048/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-049:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-045, dyn-verifier-VULN-046, dyn-verifier-VULN-047, dyn-verifier-VULN-048]
+    task: '动态验证 VULN-049。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-049/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-049/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-050:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-045, dyn-verifier-VULN-046, dyn-verifier-VULN-047, dyn-verifier-VULN-048]
+    task: '动态验证 VULN-050。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-050/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-050/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-051:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-045, dyn-verifier-VULN-046, dyn-verifier-VULN-047, dyn-verifier-VULN-048]
+    task: '动态验证 VULN-051。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-051/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-051/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-052:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-045, dyn-verifier-VULN-046, dyn-verifier-VULN-047, dyn-verifier-VULN-048]
+    task: '动态验证 VULN-052。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-052/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-052/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-053:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-049, dyn-verifier-VULN-050, dyn-verifier-VULN-051, dyn-verifier-VULN-052]
+    task: '动态验证 VULN-053。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-053/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-053/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-054:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-049, dyn-verifier-VULN-050, dyn-verifier-VULN-051, dyn-verifier-VULN-052]
+    task: '动态验证 VULN-054。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-054/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-054/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-055:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-049, dyn-verifier-VULN-050, dyn-verifier-VULN-051, dyn-verifier-VULN-052]
+    task: '动态验证 VULN-055。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-055/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-055/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-056:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-049, dyn-verifier-VULN-050, dyn-verifier-VULN-051, dyn-verifier-VULN-052]
+    task: '动态验证 VULN-056。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-056/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-056/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-057:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-053, dyn-verifier-VULN-054, dyn-verifier-VULN-055, dyn-verifier-VULN-056]
+    task: '动态验证 VULN-057。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-057/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-057/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-058:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-053, dyn-verifier-VULN-054, dyn-verifier-VULN-055, dyn-verifier-VULN-056]
+    task: '动态验证 VULN-058。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-058/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-058/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-059:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-053, dyn-verifier-VULN-054, dyn-verifier-VULN-055, dyn-verifier-VULN-056]
+    task: '动态验证 VULN-059。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-059/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-059/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-060:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-053, dyn-verifier-VULN-054, dyn-verifier-VULN-055, dyn-verifier-VULN-056]
+    task: '动态验证 VULN-060。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-060/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-060/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-061:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-057, dyn-verifier-VULN-058, dyn-verifier-VULN-059, dyn-verifier-VULN-060]
+    task: '动态验证 VULN-061。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-061/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-061/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-062:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-057, dyn-verifier-VULN-058, dyn-verifier-VULN-059, dyn-verifier-VULN-060]
+    task: '动态验证 VULN-062。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-062/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-062/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-063:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-057, dyn-verifier-VULN-058, dyn-verifier-VULN-059, dyn-verifier-VULN-060]
+    task: '动态验证 VULN-063。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-063/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-063/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-064:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-057, dyn-verifier-VULN-058, dyn-verifier-VULN-059, dyn-verifier-VULN-060]
+    task: '动态验证 VULN-064。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-064/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-064/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-065:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-061, dyn-verifier-VULN-062, dyn-verifier-VULN-063, dyn-verifier-VULN-064]
+    task: '动态验证 VULN-065。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-065/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-065/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-066:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-061, dyn-verifier-VULN-062, dyn-verifier-VULN-063, dyn-verifier-VULN-064]
+    task: '动态验证 VULN-066。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-066/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-066/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-067:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-061, dyn-verifier-VULN-062, dyn-verifier-VULN-063, dyn-verifier-VULN-064]
+    task: '动态验证 VULN-067。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-067/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-067/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-068:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-061, dyn-verifier-VULN-062, dyn-verifier-VULN-063, dyn-verifier-VULN-064]
+    task: '动态验证 VULN-068。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-068/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-068/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-069:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-065, dyn-verifier-VULN-066, dyn-verifier-VULN-067, dyn-verifier-VULN-068]
+    task: '动态验证 VULN-069。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-069/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-069/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-070:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-065, dyn-verifier-VULN-066, dyn-verifier-VULN-067, dyn-verifier-VULN-068]
+    task: '动态验证 VULN-070。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-070/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-070/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-071:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-065, dyn-verifier-VULN-066, dyn-verifier-VULN-067, dyn-verifier-VULN-068]
+    task: '动态验证 VULN-071。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-071/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-071/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-072:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-065, dyn-verifier-VULN-066, dyn-verifier-VULN-067, dyn-verifier-VULN-068]
+    task: '动态验证 VULN-072。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-072/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-072/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-073:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-069, dyn-verifier-VULN-070, dyn-verifier-VULN-071, dyn-verifier-VULN-072]
+    task: '动态验证 VULN-073。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-073/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-073/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-074:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-069, dyn-verifier-VULN-070, dyn-verifier-VULN-071, dyn-verifier-VULN-072]
+    task: '动态验证 VULN-074。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-074/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-074/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-075:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-069, dyn-verifier-VULN-070, dyn-verifier-VULN-071, dyn-verifier-VULN-072]
+    task: '动态验证 VULN-075。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-075/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-075/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-076:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-069, dyn-verifier-VULN-070, dyn-verifier-VULN-071, dyn-verifier-VULN-072]
+    task: '动态验证 VULN-076。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-076/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-076/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-077:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-073, dyn-verifier-VULN-074, dyn-verifier-VULN-075, dyn-verifier-VULN-076]
+    task: '动态验证 VULN-077。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-077/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-077/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-078:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-073, dyn-verifier-VULN-074, dyn-verifier-VULN-075, dyn-verifier-VULN-076]
+    task: '动态验证 VULN-078。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-078/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-078/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-079:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-073, dyn-verifier-VULN-074, dyn-verifier-VULN-075, dyn-verifier-VULN-076]
+    task: '动态验证 VULN-079。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-079/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-079/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-080:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-073, dyn-verifier-VULN-074, dyn-verifier-VULN-075, dyn-verifier-VULN-076]
+    task: '动态验证 VULN-080。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-080/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-080/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-081:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-077, dyn-verifier-VULN-078, dyn-verifier-VULN-079, dyn-verifier-VULN-080]
+    task: '动态验证 VULN-081。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-081/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-081/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
+  dyn-verifier-VULN-082:
+    agent: dyn-verifier
+    deps: [dyn-verifier-VULN-077, dyn-verifier-VULN-078, dyn-verifier-VULN-079, dyn-verifier-VULN-080]
+    task: '动态验证 VULN-082。工单: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-082/skill.md。读工单全文+模板+活样板→生成 twin+tb+build→执行→裁决→写 RESULT.md。'
+    offline: true
+    retry: 1
+    timeout: 7200
+    seed:
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/VULN-082/skill.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
