@@ -29,7 +29,7 @@ MEM_CONTEXT = "context.md"
 MEM_FINDINGS = "findings.md"
 MEM_DECISIONS = "decisions.md"
 
-TMUX_PREFIX = "lt-"
+TMUX_PREFIX = "hct-"
 TMUX_RC = ".tmux.conf"
 TMUX_RC_CONTENT = "\n".join([
     "set -g mouse on",

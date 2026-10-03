@@ -1,19 +1,19 @@
 [project]
-name = "logos-lite"
+name = "hctool"
 version = "0.1.0"
 description = "Hack@CHES 2026 RTL vulnerability hunting multi-agent harness"
 requires-python = ">=3.10"
 dependencies = ["PyYAML>=6.0"]
 
 [project.scripts]
-lt = "logos_lite.commands:main"
+hct = "hctool.commands:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["logos_lite"]
+packages = ["hctool"]
 
 [dependency-groups]
 dev = ["pytest>=8.0"]

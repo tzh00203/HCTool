@@ -5,7 +5,7 @@ import re
 import os
 from pathlib import Path
 
-WORKDIR = Path("/data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir")
+WORKDIR = Path("/data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir")
 SUBDIR = WORKDIR / "submissions"
 POCDIR = WORKDIR / "poc"
 OT_TREE = Path("/data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind")
@@ -16,7 +16,7 @@ TEAM_NAME = "[PLACEHOLDER — fill in team name before submission]"
 
 # LLM info
 LLM_MODEL = "Claude (Anthropic)"
-AGENT_CONTRACTS = "/data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/runs/20260918-170133/agents/"
+AGENT_CONTRACTS = "/data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/runs/20260918-170133/agents/"
 
 # CVSS vectors — derived from review.md severity and root cause
 # These are best-effort; the reviewer validated the severity level
@@ -401,11 +401,11 @@ VULNS = {
         detection="6-lens blind hunter (lens: hjson-spec-vs-rtl) + oracle entropy_src + SVA RngBackpressureNotAllowed_A前提违反 + L2 evidence",
     ),
     20: dict(
-        title="PMP access_fault_check MMWP/MML default-deny semantics not implemented — no region match always returns allow",
-        slug="pmp-mmwp-default-allow",
+        title="PMP access_fault_check MMWP/MML defauhct-deny semantics not implemented — no region match always returns allow",
+        slug="pmp-mmwp-defauhct-allow",
         ip="ibex-pmp",
         root_type="hjson-spec-vs-rtl",
-        sec_feature_bypassed="PMP default-deny (Smepmp MMWP/MML)",
+        sec_feature_bypassed="PMP defauhct-deny (Smepmp MMWP/MML)",
         severity="High",
         priority="P2",
         tier="PoC",
@@ -413,9 +413,9 @@ VULNS = {
             "hw/vendor/lowrisc_ibex/rtl/ibex_pmp.sv:129",
         ],
         finding="access_fault_check at ibex_pmp.sv:129-151 receives mmwp/mml parameters but does not use them. Comments at :137-138 claim 'default deny always' and 'deny unmatched EXEC', but with no region match, function always returns allow.",
-        impact="M-mode can bypass default-deny protection when MMWP=1 or MML=1. Smepmp v1.0 §2.4/2.5 semantics violated.",
+        impact="M-mode can bypass defauhct-deny protection when MMWP=1 or MML=1. Smepmp v1.0 §2.4/2.5 semantics violated.",
         adversary="M-mode software accessing memory with no PMP region match when MMWP=1. Access is incorrectly allowed.",
-        mitigation="Implement default-deny logic when no PMP region matches and MMWP/MML is set, per Smepmp v1.0 §2.4/2.5.",
+        mitigation="Implement defauhct-deny logic when no PMP region matches and MMWP/MML is set, per Smepmp v1.0 §2.4/2.5.",
         detection="6-lens blind hunter (lens: hjson-spec-vs-rtl + check-bypass) + oracle ibex-pmp (Smepmp v1.0 + in-file comments) + L2 evidence",
     ),
     21: dict(
@@ -512,7 +512,7 @@ VULNS = {
     ),
     26: dict(
         title="otp_ctrl DAI command decode empty default swallows 5 invalid encodings — fault injection can suppress DAID operation",
-        slug="otp-dai-default-swallow",
+        slug="otp-dai-defauhct-swallow",
         ip="otp_ctrl",
         root_type="check-bypass",
         sec_feature_bypassed="DAI.FSM.SPARSE",
@@ -530,7 +530,7 @@ VULNS = {
     ),
     27: dict(
         title="otp_ctrl scrmbl command decode empty default swallows 2 invalid encodings — fault injection can suppress encrypt/decrypt/digest",
-        slug="otp-scrmbl-default-swallow",
+        slug="otp-scrmbl-defauhct-swallow",
         ip="otp_ctrl",
         root_type="check-bypass",
         sec_feature_bypassed="SCRMBL.FSM.SPARSE",
@@ -608,7 +608,7 @@ REMAINING_VULNS = {
          "Fault injection creating sparse FSM error. 100-cycle grace period before alert.",
          "Remove the 100-cycle delay counter, set sparse_fsm_error_o immediately on FSM error like other KMAC FSMs.",
          "6-lens blind hunter + oracle kmac (FSM.LOCAL_ESC) + L1 evidence"),
-    34: ("AES state default conditional — non-AES-256 fault injection path retains key-dependent intermediate state", "aes-state-default-cond", "aes", "sec-cm-mismatch", "DATA_REG.SEC_WIPE", "Medium", "P3",
+    34: ("AES state default conditional — non-AES-256 fault injection path retains key-dependent intermediate state", "aes-state-defauhct-cond", "aes", "sec-cm-mismatch", "DATA_REG.SEC_WIPE", "Medium", "P3",
          ["hw/ip/aes/rtl/aes_cipher_core.sv:253"],
          "aes_cipher_core.sv:253 uses `(key_len_i==AES_256)?prd_clearing_state_i:state_d`. Default should unconditionally use prd_clearing_state_i. AES-128/192 fault path retains intermediate state.",
          "AES-128/192 fault path leaks key-dependent intermediate state. Limited to non-AES-256 modes.",
@@ -789,7 +789,7 @@ def gen_submission(vuln_id: int, data: dict) -> str:
         vector,
         "",
         f"## 13. New Tools",
-        "logos-lite harness: multi-agent pipeline (oracle-scout, hunter, correlator, dyn-verifier, reviewer, reporter) + twin differential verification",
+        "hctool harness: multi-agent pipeline (oracle-scout, hunter, correlator, dyn-verifier, reviewer, reporter) + twin differential verification",
         "",
         f"## 14. AI Tools (radio)",
         "Yes",

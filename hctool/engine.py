@@ -189,7 +189,7 @@ class Engine:
         self.driver.reset_done(name)
         window = self._ensure_window(name)
         if window is None:
-            self._fail(name, "tmux 会话不存在，用 lt resume 恢复")
+            self._fail(name, "tmux 会话不存在，用 hct resume 恢复")
             return
         prompt = build_task_prompt(self.run, self.project, name, cfg)
         try:

@@ -6,280 +6,280 @@ control: true
 env:
   OT_TREE: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind
   VERILATOR: /data_hdd/tzh24/zgc4/projects/tools/logos/logos-workspace/contexts/targets/opentitan-ches2026/runtime-samples/verilator-4.210/v4.210
-  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite
+  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool
 nodes:
   oracle-scout-aes:
     agent: oracle-scout
-    task: '盘点 IP aes 的全部树内预言机（RTL: $OT_TREE/hw/ip/aes/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/aes.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP aes 的全部树内预言机（RTL: $OT_TREE/hw/ip/aes/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/aes.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-aes:
     agent: hunter
     deps: [oracle-scout-aes]
-    task: '对 IP aes 执行 6-lens 盲猎（$OT_TREE/hw/ip/aes/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/aes.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/aes/candidates.md。'
+    task: '对 IP aes 执行 6-lens 盲猎（$OT_TREE/hw/ip/aes/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/aes.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/aes/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/aes.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/aes.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-hmac:
     agent: oracle-scout
-    task: '盘点 IP hmac 的全部树内预言机（RTL: $OT_TREE/hw/ip/hmac/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/hmac.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP hmac 的全部树内预言机（RTL: $OT_TREE/hw/ip/hmac/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/hmac.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-hmac:
     agent: hunter
     deps: [oracle-scout-hmac]
-    task: '对 IP hmac 执行 6-lens 盲猎（$OT_TREE/hw/ip/hmac/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/hmac.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/hmac/candidates.md。'
+    task: '对 IP hmac 执行 6-lens 盲猎（$OT_TREE/hw/ip/hmac/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/hmac.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/hmac/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/hmac.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/hmac.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-ascon:
     agent: oracle-scout
-    task: '盘点 IP ascon 的全部树内预言机（RTL: $OT_TREE/hw/ip/ascon/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ascon.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP ascon 的全部树内预言机（RTL: $OT_TREE/hw/ip/ascon/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ascon.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-ascon:
     agent: hunter
     deps: [oracle-scout-ascon]
-    task: '对 IP ascon 执行 6-lens 盲猎（$OT_TREE/hw/ip/ascon/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ascon.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/ascon/candidates.md。'
+    task: '对 IP ascon 执行 6-lens 盲猎（$OT_TREE/hw/ip/ascon/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ascon.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/ascon/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ascon.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ascon.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-entropy_src:
     agent: oracle-scout
-    task: '盘点 IP entropy_src 的全部树内预言机（RTL: $OT_TREE/hw/ip/entropy_src/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/entropy_src.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP entropy_src 的全部树内预言机（RTL: $OT_TREE/hw/ip/entropy_src/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/entropy_src.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-entropy_src:
     agent: hunter
     deps: [oracle-scout-entropy_src]
-    task: '对 IP entropy_src 执行 6-lens 盲猎（$OT_TREE/hw/ip/entropy_src/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/entropy_src.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/entropy_src/candidates.md。'
+    task: '对 IP entropy_src 执行 6-lens 盲猎（$OT_TREE/hw/ip/entropy_src/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/entropy_src.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/entropy_src/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/entropy_src.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/entropy_src.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-keymgr:
     agent: oracle-scout
-    task: '盘点 IP keymgr 的全部树内预言机（RTL: $OT_TREE/hw/ip/keymgr/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/keymgr.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP keymgr 的全部树内预言机（RTL: $OT_TREE/hw/ip/keymgr/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/keymgr.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-keymgr:
     agent: hunter
     deps: [oracle-scout-keymgr]
-    task: '对 IP keymgr 执行 6-lens 盲猎（$OT_TREE/hw/ip/keymgr/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/keymgr.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/keymgr/candidates.md。'
+    task: '对 IP keymgr 执行 6-lens 盲猎（$OT_TREE/hw/ip/keymgr/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/keymgr.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/keymgr/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/keymgr.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/keymgr.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-lc_ctrl:
     agent: oracle-scout
-    task: '盘点 IP lc_ctrl 的全部树内预言机（RTL: $OT_TREE/hw/ip/lc_ctrl/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP lc_ctrl 的全部树内预言机（RTL: $OT_TREE/hw/ip/lc_ctrl/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-lc_ctrl:
     agent: hunter
     deps: [oracle-scout-lc_ctrl]
-    task: '对 IP lc_ctrl 执行 6-lens 盲猎（$OT_TREE/hw/ip/lc_ctrl/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/lc_ctrl/candidates.md。'
+    task: '对 IP lc_ctrl 执行 6-lens 盲猎（$OT_TREE/hw/ip/lc_ctrl/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/lc_ctrl/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/lc_ctrl.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-otp_ctrl:
     agent: oracle-scout
-    task: '盘点 IP otp_ctrl 的全部树内预言机（RTL: $OT_TREE/hw/ip/otp_ctrl/rtl + $OT_TREE/hw/top_earlgrey/ip_autogen/otp_ctrl/rtl；本体在 top_earlgrey/ip_autogen（寄存器拓扑），hjson/SEC_CM 在 hw/ip/otp_ctrl/data）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/otp_ctrl.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP otp_ctrl 的全部树内预言机（RTL: $OT_TREE/hw/ip/otp_ctrl/rtl + $OT_TREE/hw/top_earlgrey/ip_autogen/otp_ctrl/rtl；本体在 top_earlgrey/ip_autogen（寄存器拓扑），hjson/SEC_CM 在 hw/ip/otp_ctrl/data）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/otp_ctrl.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-otp_ctrl:
     agent: hunter
     deps: [oracle-scout-otp_ctrl]
-    task: '对 IP otp_ctrl 执行 6-lens 盲猎（$OT_TREE/hw/ip/otp_ctrl/rtl + $OT_TREE/hw/top_earlgrey/ip_autogen/otp_ctrl/rtl；本体在 top_earlgrey/ip_autogen（寄存器拓扑），hjson/SEC_CM 在 hw/ip/otp_ctrl/data），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/otp_ctrl.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/otp_ctrl/candidates.md。'
+    task: '对 IP otp_ctrl 执行 6-lens 盲猎（$OT_TREE/hw/ip/otp_ctrl/rtl + $OT_TREE/hw/top_earlgrey/ip_autogen/otp_ctrl/rtl；本体在 top_earlgrey/ip_autogen（寄存器拓扑），hjson/SEC_CM 在 hw/ip/otp_ctrl/data），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/otp_ctrl.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/otp_ctrl/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/otp_ctrl.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/otp_ctrl.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-rom_ctrl:
     agent: oracle-scout
-    task: '盘点 IP rom_ctrl 的全部树内预言机（RTL: $OT_TREE/hw/ip/rom_ctrl/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/rom_ctrl.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP rom_ctrl 的全部树内预言机（RTL: $OT_TREE/hw/ip/rom_ctrl/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/rom_ctrl.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-rom_ctrl:
     agent: hunter
     deps: [oracle-scout-rom_ctrl]
-    task: '对 IP rom_ctrl 执行 6-lens 盲猎（$OT_TREE/hw/ip/rom_ctrl/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/rom_ctrl.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/rom_ctrl/candidates.md。'
+    task: '对 IP rom_ctrl 执行 6-lens 盲猎（$OT_TREE/hw/ip/rom_ctrl/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/rom_ctrl.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/rom_ctrl/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/rom_ctrl.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/rom_ctrl.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-uart:
     agent: oracle-scout
-    task: '盘点 IP uart 的全部树内预言机（RTL: $OT_TREE/hw/ip/uart/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/uart.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP uart 的全部树内预言机（RTL: $OT_TREE/hw/ip/uart/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/uart.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-uart:
     agent: hunter
     deps: [oracle-scout-uart]
-    task: '对 IP uart 执行 6-lens 盲猎（$OT_TREE/hw/ip/uart/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/uart.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/uart/candidates.md。'
+    task: '对 IP uart 执行 6-lens 盲猎（$OT_TREE/hw/ip/uart/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/uart.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/uart/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/uart.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/uart.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-ibex-pmp:
     agent: oracle-scout
-    task: '盘点 IP ibex-pmp 的全部树内预言机（RTL: $OT_TREE/hw/vendor/lowrisc_ibex/rtl；重点文件 ibex_pmp.sv（pmpcfg/addr 语义、字节形、锁定语义））。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-pmp.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP ibex-pmp 的全部树内预言机（RTL: $OT_TREE/hw/vendor/lowrisc_ibex/rtl；重点文件 ibex_pmp.sv（pmpcfg/addr 语义、字节形、锁定语义））。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-pmp.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-ibex-pmp:
     agent: hunter
     deps: [oracle-scout-ibex-pmp]
-    task: '对 IP ibex-pmp 执行 6-lens 盲猎（$OT_TREE/hw/vendor/lowrisc_ibex/rtl；重点文件 ibex_pmp.sv（pmpcfg/addr 语义、字节形、锁定语义）），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-pmp.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/ibex-pmp/candidates.md。'
+    task: '对 IP ibex-pmp 执行 6-lens 盲猎（$OT_TREE/hw/vendor/lowrisc_ibex/rtl；重点文件 ibex_pmp.sv（pmpcfg/addr 语义、字节形、锁定语义）），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-pmp.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/ibex-pmp/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-pmp.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-pmp.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-ibex-csrs:
     agent: oracle-scout
-    task: '盘点 IP ibex-csrs 的全部树内预言机（RTL: $OT_TREE/hw/vendor/lowrisc_ibex/rtl；重点文件 ibex_cs_registers.sv（dcsr/dcsr_ebreak、mseccfg、权限检查））。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-csrs.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP ibex-csrs 的全部树内预言机（RTL: $OT_TREE/hw/vendor/lowrisc_ibex/rtl；重点文件 ibex_cs_registers.sv（dcsr/dcsr_ebreak、mseccfg、权限检查））。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-csrs.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-ibex-csrs:
     agent: hunter
     deps: [oracle-scout-ibex-csrs]
-    task: '对 IP ibex-csrs 执行 6-lens 盲猎（$OT_TREE/hw/vendor/lowrisc_ibex/rtl；重点文件 ibex_cs_registers.sv（dcsr/dcsr_ebreak、mseccfg、权限检查）），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-csrs.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/ibex-csrs/candidates.md。'
+    task: '对 IP ibex-csrs 执行 6-lens 盲猎（$OT_TREE/hw/vendor/lowrisc_ibex/rtl；重点文件 ibex_cs_registers.sv（dcsr/dcsr_ebreak、mseccfg、权限检查）），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-csrs.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/ibex-csrs/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-csrs.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/ibex-csrs.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   oracle-scout-kmac:
     agent: oracle-scout
-    task: '盘点 IP kmac 的全部树内预言机（RTL: $OT_TREE/hw/ip/kmac/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/kmac.md，每条预言机带 file:line 且可检验。'
+    task: '盘点 IP kmac 的全部树内预言机（RTL: $OT_TREE/hw/ip/kmac/rtl）。按 FORMAT.md 格式产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/kmac.md，每条预言机带 file:line 且可检验。'
     offline: true
     retry: 1
     timeout: 3600
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   hunter-kmac:
     agent: hunter
     deps: [oracle-scout-kmac]
-    task: '对 IP kmac 执行 6-lens 盲猎（$OT_TREE/hw/ip/kmac/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/kmac.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/kmac/candidates.md。'
+    task: '对 IP kmac 执行 6-lens 盲猎（$OT_TREE/hw/ip/kmac/rtl），弹药 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/kmac.md（不存在则先自做精简盘点）。report-everything，逐条带预言机依据，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/kmac/candidates.md。'
     offline: true
     retry: 1
     timeout: 5400
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/oracle-inventory/kmac.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/oracle-inventory/kmac.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/tech-stacks/rtl-opentitan/SECURITY_NOTES.md
   correlator:
     agent: correlator
     deps: [hunter-aes, hunter-hmac, hunter-ascon, hunter-entropy_src, hunter-keymgr, hunter-lc_ctrl, hunter-otp_ctrl, hunter-rom_ctrl, hunter-uart, hunter-ibex-pmp, hunter-ibex-csrs, hunter-kmac]
-    task: '汇总全部 hunter 候选（/data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/findings/*/candidates.md + runs/<run>/memory/findings.md），去重合并同根因，赋 VULN-ID 并按预估分排序，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/artifacts/vulns.md（全部 pending-verify，不删任何候选）。'
+    task: '汇总全部 hunter 候选（/data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/findings/*/candidates.md + runs/<run>/memory/findings.md），去重合并同根因，赋 VULN-ID 并按预估分排序，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/artifacts/vulns.md（全部 pending-verify，不删任何候选）。'
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
     timeout: 3600
-    checkpoint: true   # 人工审 vulns.md 后 lt accept correlator
+    checkpoint: true   # 人工审 vulns.md 后 hct accept correlator
   verify-planner:
     agent: verify-planner
     deps: [correlator]
-    task: '读 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/artifacts/vulns.md，逐 VULN 写验证工单到 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/skills/<VULN-ID>/skill.md，生成并同步执行子流水线 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/plan-dynverify/pipeline.yaml（dyn-verifier ×N，每批≤4 并行），执行完把裁决回写 vulns.md 状态字段。'
+    task: '读 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/artifacts/vulns.md，逐 VULN 写验证工单到 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/plan-dynverify/skills/<VULN-ID>/skill.md，生成并同步执行子流水线 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/plan-dynverify/pipeline.yaml（dyn-verifier ×N，每批≤4 并行），执行完把裁决回写 vulns.md 状态字段。'
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/artifacts/vulns.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/verilator-twin-methodology.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/templates/REF.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/artifacts/vulns.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/standards/verilator-twin-methodology.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/templates/REF.md
     timeout: 14400
   reviewer:
     agent: reviewer
     deps: [verify-planner]
-    task: '逐条审计已验证 VULN（/data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/artifacts/vulns.md + /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/poc/*/RESULT.md）：Rule 3 合规、PoC 复现重跑、CVSS 校准、查重、证据链完整，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/artifacts/review.md（PASS/FAIL/RETURN + 提交优先级）。'
+    task: '逐条审计已验证 VULN（/data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/artifacts/vulns.md + /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/poc/*/RESULT.md）：Rule 3 合规、PoC 复现重跑、CVSS 校准、查重、证据链完整，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/artifacts/review.md（PASS/FAIL/RETURN + 提交优先级）。'
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/artifacts/vulns.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/artifacts/vulns.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
     timeout: 5400
-    checkpoint: true   # 人工审 review.md 后 lt accept reviewer
+    checkpoint: true   # 人工审 review.md 后 hct accept reviewer
   reporter:
     agent: reporter
     deps: [reviewer]
-    task: '把 review PASS 条目转成 CHES 19 字段提交包（按 FIELDS.md 映射），按预估分排序写入 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/submissions/<bug-number>_<slug>.md + INDEX.md。'
+    task: '把 review PASS 条目转成 CHES 19 字段提交包（按 FIELDS.md 映射），按预估分排序写入 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/submissions/<bug-number>_<slug>.md + INDEX.md。'
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/artifacts/review.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/ches2026-prep/workdir/artifacts/vulns.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/ches-2026-rules.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/artifacts/review.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/ches2026-prep/workdir/artifacts/vulns.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/standards/ches-2026-rules.md
     timeout: 1800

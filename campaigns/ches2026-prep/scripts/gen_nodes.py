@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-HARNESS = Path(__file__).resolve().parents[2].parent  # logos-lite/
+HARNESS = Path(__file__).resolve().parents[2].parent  # hctool/
 CAMPAIGN = HARNESS / "campaigns" / "ches2026-prep"
 
 OT_TREE = "/data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind"
@@ -138,7 +138,7 @@ def gen() -> str:
     a("    seed:")
     a(f"      - {HARNESS}/knowledge/INDEX.md")
     a(f"    timeout: {DOWNSTREAM_TIMEOUT['correlator']}")
-    a("    checkpoint: true   # 人工审 vulns.md 后 lt approve correlator")
+    a("    checkpoint: true   # 人工审 vulns.md 后 hct approve correlator")
 
     a("  verify-planner:")
     a("    agent: verify-planner")
@@ -173,7 +173,7 @@ def gen() -> str:
     a(f"      - {W}/artifacts/vulns.md")
     a(f"      - {HARNESS}/knowledge/INDEX.md")
     a(f"    timeout: {DOWNSTREAM_TIMEOUT['reviewer']}")
-    a("    checkpoint: true   # 人工审 review.md 后 lt approve reviewer")
+    a("    checkpoint: true   # 人工审 review.md 后 hct approve reviewer")
 
     a("  reporter:")
     a("    agent: reporter")

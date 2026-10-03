@@ -1,4 +1,4 @@
-"""lt 命令行入口。"""
+"""hct 命令行入口。"""
 from __future__ import annotations
 
 import argparse
@@ -36,7 +36,7 @@ def _run(args) -> Execution:
     project = _project(args)
     run_id = getattr(args, "run_id", None) or project.latest_run_id()
     if run_id is None:
-        sys.exit("error: 没有可用的 run（先 lt run）")
+        sys.exit("error: 没有可用的 run（先 hct run）")
     return Execution(project=project, run_id=run_id)
 
 
@@ -85,12 +85,12 @@ def cmd_run(args) -> None:
         state.node("control").status = NodeStatus.RUNNING
         state.save(run.state_file)
     print(f"run {run_id} 已启动；tmux 会话: {run.tmux_session_name}")
-    print("Ctrl-C 可中断（state 已落盘），之后 lt resume 继续")
+    print("Ctrl-C 可中断（state 已落盘），之后 hct resume 继续")
     try:
         orch.run_loop()
     except KeyboardInterrupt:
         state.save(run.state_file)
-        print(f"\n已中断。恢复: lt resume {run_id}")
+        print(f"\n已中断。恢复: hct resume {run_id}")
         return
     print(orch.status_text())
 
@@ -105,7 +105,7 @@ def cmd_resume(args) -> None:
         orch.run_loop()
     except KeyboardInterrupt:
         state.save(run.state_file)
-        print(f"\n已中断。恢复: lt resume {run.run_id}")
+        print(f"\n已中断。恢复: hct resume {run.run_id}")
         return
     print(orch.status_text())
 
@@ -305,9 +305,9 @@ def cmd_clean(args) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="lt", description="ltool — Hack@CHES 多 agent 挖洞 harness"
+        prog="hct", description="ltool — Hack@CHES 多 agent 挖洞 harness"
     )
-    parser.add_argument("--version", action="version", version=f"lt {__version__}")
+    parser.add_argument("--version", action="version", version=f"hct {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
 
     def add_project(p):

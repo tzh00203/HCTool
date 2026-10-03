@@ -40,7 +40,7 @@
 
 | # | 参考物 (绝对路径) | 类型 | 可对比什么 |
 |---|---|---|---|
-| 1 | /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind/hw/vendor/lowrisc_ibex/doc/03_reference/pmp.rst | 规范注释（RISC-V Privileged Spec v1.12 + Smepmp v1.0） | pmp.rst 声明的行为与 RTL ibex_pmp.sv 的实现逐条对照：MML shared-region 表、MMWP default-deny、RLB lock bypass、debug window |
+| 1 | /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind/hw/vendor/lowrisc_ibex/doc/03_reference/pmp.rst | 规范注释（RISC-V Privileged Spec v1.12 + Smepmp v1.0） | pmp.rst 声明的行为与 RTL ibex_pmp.sv 的实现逐条对照：MML shared-region 表、MMWP defauhct-deny、RLB lock bypass、debug window |
 | 2 | /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind/hw/top_earlgrey/ip_autogen/rv_core_ibex/data/rv_core_ibex.hjson | hjson 寄存器规格 | PMP 参数（PMPEnable/PMPGranularity/PMPNumRegions/PMPRstCfg/PMPRstAddr/PMPRstMsecCfg）与 RTL 默认值一致性；feature RV_CORE_IBEX.CPU.EPMP 声明 |
 | 3 | /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind/hw/top_earlgrey/ip_autogen/rv_core_ibex/data/rv_core_ibex_sec_cm_testplan.hjson | sec_cm 验证计划 | 13 条 sec_cm 无 PMP 专属条目——PMP 对策验证覆盖缺口 |
 | 4 | /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind/hw/vendor/lowrisc_ibex/rtl/ibex_cs_registers.sv | 兄弟模块（CSR 端） | PMP cfg/addr 写使能逻辑（pmp_cfg_we/pmp_addr_we）与 ibex_pmp.sv 的读端语义一致性；mseccfg sticky 语义；lock+RLB 交互；addr 字节形掩码 |

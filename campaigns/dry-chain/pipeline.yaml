@@ -5,27 +5,27 @@ name: dry-chain
 env:
   OT_TREE: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind
   VERILATOR: /data_hdd/tzh24/zgc4/projects/tools/logos/logos-workspace/contexts/targets/opentitan-ches2026/runtime-samples/verilator-4.210/v4.210
-  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite
+  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool
 nodes:
   correlator:
     agent: correlator
-    task: '汇总 workdir/findings/lc_ctrl/candidates.md（本目录下的手工种子样例），去重合并、赋 VULN-ID、按预估分排序，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/dry-chain/workdir/artifacts/vulns.md，全部标 pending-verify。'
+    task: '汇总 workdir/findings/lc_ctrl/candidates.md（本目录下的手工种子样例），去重合并、赋 VULN-ID、按预估分排序，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/dry-chain/workdir/artifacts/vulns.md，全部标 pending-verify。'
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/dry-chain/workdir/findings/lc_ctrl/candidates.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/dry-chain/workdir/findings/lc_ctrl/candidates.md
   reviewer:
     agent: reviewer
     deps: [correlator]
-    task: '逐条审计 workdir/artifacts/vulns.md 与 workdir/poc/VULN-001/RESULT.md（VULN-001 已预置为 poc-success + L2 证据，其余为静态档）。Rule 3 合规、证据链、CVSS 校准（对照知识库同型 GT）、查重，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/dry-chain/workdir/artifacts/review.md。注意：这是空载链路验证，PoC 复现重跑一步对 VULN-001 可跳过实际执行（RESULT.md 为种子样例），在 review.md 中注明 [dry-run]。'
+    task: '逐条审计 workdir/artifacts/vulns.md 与 workdir/poc/VULN-001/RESULT.md（VULN-001 已预置为 poc-success + L2 证据，其余为静态档）。Rule 3 合规、证据链、CVSS 校准（对照知识库同型 GT）、查重，产出 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/dry-chain/workdir/artifacts/review.md。注意：这是空载链路验证，PoC 复现重跑一步对 VULN-001 可跳过实际执行（RESULT.md 为种子样例），在 review.md 中注明 [dry-run]。'
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/dry-chain/workdir/artifacts/vulns.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/dry-chain/workdir/poc/VULN-001/RESULT.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/INDEX.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/dry-chain/workdir/artifacts/vulns.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/dry-chain/workdir/poc/VULN-001/RESULT.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/INDEX.md
   reporter:
     agent: reporter
     deps: [reviewer]
-    task: '把 review.md 的 PASS 条目转成 CHES 19 字段提交包（按 FIELDS.md 映射），按预估分排序写入 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/dry-chain/workdir/submissions/<bug-number>_<slug>.md 与 INDEX.md。Email/Team name 用 placeholder（决赛时替换）。'
+    task: '把 review.md 的 PASS 条目转成 CHES 19 字段提交包（按 FIELDS.md 映射），按预估分排序写入 /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/dry-chain/workdir/submissions/<bug-number>_<slug>.md 与 INDEX.md。Email/Team name 用 placeholder（决赛时替换）。'
     seed:
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/dry-chain/workdir/artifacts/review.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/campaigns/dry-chain/workdir/artifacts/vulns.md
-      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite/knowledge/standards/ches-2026-rules.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/dry-chain/workdir/artifacts/review.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/campaigns/dry-chain/workdir/artifacts/vulns.md
+      - /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool/knowledge/standards/ches-2026-rules.md

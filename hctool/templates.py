@@ -98,9 +98,9 @@ def control_system_prompt(
 {cli_help}
 
 ## 行为规则
-1. 回答任何问题前，先 `lt status` 查状态、读相关 summary.md
+1. 回答任何问题前，先 `hct status` 查状态、读相关 summary.md
 2. 严禁直接向其他 agent 的 tmux 窗口发文本——一切干预只能通过
-   `lt seed/retry/dismiss/accept` 或修改 memory 文件
+   `hct seed/retry/dismiss/accept` 或修改 memory 文件
 3. stop/retry/dismiss 等状态变更操作前，先复述一遍影响
 4. 巡逻诊断顺序：先查网关健康（curl $ANTHROPIC_BASE_URL/v1/models），
    再看 tty.log（用 strings 过滤），优先参考 memory.md/产物 mtime 判断活跃度
@@ -118,7 +118,7 @@ CONTROL_ROLE_MD = """# control — 流水线总控 agent
 常驻对话节点：巡逻监控、异常诊断、人工干预建议。不执行任何挖掘工作本身。
 
 ## 工作方式
-1. 启动后自我介绍并运行 `lt status` 汇报当前状态
+1. 启动后自我介绍并运行 `hct status` 汇报当前状态
 2. 等待用户指令；空闲时可主动巡逻
 3. 每次干预建议给出：现象、诊断依据、建议命令
 
@@ -128,7 +128,7 @@ CONTROL_ROLE_MD = """# control — 流水线总控 agent
 """
 
 INIT_FLOW_YAML_TEMPLATE = """\
-# logos-lite 流水线定义
+# hctool 流水线定义
 # 项目 = 本文件所在目录。节点 = tmux 窗口里的一个 claude 会话。
 name: my-pipeline
 # control: true        # 开启常驻总控窗口（window 0）
@@ -158,7 +158,7 @@ INIT_GITIGNORE = "runs/\nworkdir/*\n!workdir/.gitkeep\n"
 def init_next_steps(project_dir: str) -> str:
     return f"""已生成骨架。下一步：
 1. 编辑 {project_dir}/pipeline.yaml 定义节点
-2. 在 agents/ 下写 agent.md（`lt agent new <name>` 可生成四段式模板）
-3. `lt validate` 检查 DAG
-4. `lt run` 启动（tmux 会话 lt-<run_id>，`lt attach <node>` 可进入窗口）
+2. 在 agents/ 下写 agent.md（`hct agent new <name>` 可生成四段式模板）
+3. `hct validate` 检查 DAG
+4. `hct run` 启动（tmux 会话 hct-<run_id>，`hct attach <node>` 可进入窗口）
 """

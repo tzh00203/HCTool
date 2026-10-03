@@ -11,16 +11,16 @@ from .layout import Workspace, Execution
 from .templates import control_system_prompt
 
 CONTROL_OPENING_PROMPT = (
-    "你好，我是本流水线的总控 agent。请先自我介绍并运行 `lt status` "
+    "你好，我是本流水线的总控 agent。请先自我介绍并运行 `hct status` "
     "汇报当前流水线状态，然后等待用户指令。"
 )
 
-_CLI_HELP = """- `lt status` — 查看各节点状态
-- `lt log <node>` — 查看节点终端日志
-- `lt seed <node> "<msg>"` — 向运行中节点注入提示
-- `lt accept <node>` — 批准 gate 节点
-- `lt retry <node>` — 重试节点（重建窗口）
-- `lt dismiss <node> --reason "..."` — 跳过节点（下游照常启动）
+_CLI_HELP = """- `hct status` — 查看各节点状态
+- `hct log <node>` — 查看节点终端日志
+- `hct seed <node> "<msg>"` — 向运行中节点注入提示
+- `hct accept <node>` — 批准 gate 节点
+- `hct retry <node>` — 重试节点（重建窗口）
+- `hct dismiss <node> --reason "..."` — 跳过节点（下游照常启动）
 - `lw stop` — 停止流水线"""
 
 
@@ -38,7 +38,7 @@ def prepare_control_files(
     control_agent_md = project.find_agent_md(C.CTRL_NODE)
     if control_agent_md is None:
         raise FileNotFoundError(
-            f"control: true 需要 {project.agents_dir}/control/agent.md（lt init 会生成）"
+            f"control: true 需要 {project.agents_dir}/control/agent.md（hct init 会生成）"
         )
     nd = run.node_path(C.CTRL_NODE)
     nd.mkdir(parents=True, exist_ok=True)

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-HARNESS = Path(__file__).resolve().parents[2].parent  # logos-lite/
+HARNESS = Path(__file__).resolve().parents[2].parent  # hctool/
 CAMPAIGN = HARNESS / "campaigns" / "ches2026-prep"
 W = CAMPAIGN / "workdir"
 

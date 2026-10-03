@@ -120,7 +120,7 @@
   assign rom_prince_addr_o = mubi4_test_true_strict(sel_bus_i) ? bus_prince_addr_i : chk_addr_i;
   ```
 - lens: L4 结构lint
-- 预言机依据: (1) rom_ctrl_scrambled_rom.sv:17-22 注释 "These are expected to be connected to signals that are logically the same. The first is used as an input to the physical ROM index. The second is used when calculating the address-tweakable keystream. The trick is that you can mitigate fault-injection attacks that corrupt the address by splitting it somewhere upstream."——但在 checker 模式下两者相同（均来自 chk_addr_i），无冗余；(2) CTRL.REDUN SEC_CM (rom_ctrl.hjson:251) 声明 "Addresses from TL accesses are passed redundantly"——但这只覆盖 bus 侧，checker 侧地址无冗余保护；(3) checker 在 boot 阶段独占 ROM 读取——此期间地址 fault 注入无冗余检测
+- 预言机依据: (1) rom_ctrl_scrambled_rom.sv:17-22 注释 "These are expected to be connected to signals that are logically the same. The first is used as an input to the physical ROM index. The second is used when calculating the address-tweakable keystream. The trick is that you can mitigate fauhct-injection attacks that corrupt the address by splitting it somewhere upstream."——但在 checker 模式下两者相同（均来自 chk_addr_i），无冗余；(2) CTRL.REDUN SEC_CM (rom_ctrl.hjson:251) 声明 "Addresses from TL accesses are passed redundantly"——但这只覆盖 bus 侧，checker 侧地址无冗余保护；(3) checker 在 boot 阶段独占 ROM 读取——此期间地址 fault 注入无冗余检测
 - 建议验证型: 时序 tb：在 checker 读取 ROM 期间注入地址 fault，观测 scrambled_rom 输出是否错误且未被检测
 
 ### CAND-rom_ctrl-10

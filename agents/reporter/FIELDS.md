@@ -24,7 +24,7 @@
 
 | # | Google Form 字段 | 内部来源 |
 |---|---|---|
-| 13 | New Tools | 如实：logos-lite harness（多 agent 流水线 + twin 差分验证） |
+| 13 | New Tools | 如实：hctool harness（多 agent 流水线 + twin 差分验证） |
 | 14 | AI Tools (radio) | Yes |
 | 15 | LLM (radio) | Yes |
 | 16 | LLM Details | 模型名（当前网关配置的模型，从 context.md 读） |

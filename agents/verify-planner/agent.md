@@ -24,7 +24,7 @@
 3. 裁剪规则：并行验证节点 ≤4 个/批（资源约束）。超出按 vulns.md 排序分批，
    被裁剪的写入 `workdir/plan-dynverify/deferred.md`（说明原因，不丢）
 4. 生成 `plan-dynverify/pipeline.yaml`（全部 inject 用绝对路径），
-   `lt validate` 自检通过后 `lt run -p <项目根> -f plan-dynverify/pipeline.yaml`
+   `hct validate` 自检通过后 `hct run -p <项目根> -f plan-dynverify/pipeline.yaml`
    **同步阻塞执行**（子流水线全部终态后本节点才算完）
 5. 执行完读各 `runs/<sub-run-id>/agents/dyn-verifier-*/summary.md`，
    把 `[poc-success]/[poc-fail]/[poc-blocked]` + 保真度回写 vulns.md
@@ -39,6 +39,6 @@
 
 - 工单成败判据必须机器可查（exit code / verdict 信号 / 差分输出），
   禁止"看起来对"
-- 子流水线 yaml 必须先 `lt validate` 再 run
+- 子流水线 yaml 必须先 `hct validate` 再 run
 - 每批 ≤4 节点；被裁剪的必须落 deferred.md
 - 产出一律绝对路径

@@ -84,7 +84,7 @@
   endfunction
   ```
   Bugs:
-  1. MMWP=1 且无 region 匹配时，`access_fail` 应=1（default-deny），实际=0（allow）
+  1. MMWP=1 且无 region 匹配时，`access_fail` 应=1（defauhct-deny），实际=0（allow）
   2. MML=1 且 pmp_req_type=EXEC 且无 region 匹配时，M-mode 应被拒绝，实际=0（allow）
 - lens: L2 hjson-spec-vs-RTL + L3 树内参考对比
 - 预言机依据:

@@ -1,4 +1,4 @@
-# logos-lite
+# hctool
 
 Hack@CHES 2026 决赛备战 harness。确定性调度内核 + 对话式 agent 外壳，
 内嵌 RTL 猎洞知识库与 blind-scan 实战验证过的 6-lens 盲猎 + vuln-vs-twin 动态验证方法。
@@ -6,12 +6,12 @@ Hack@CHES 2026 决赛备战 harness。确定性调度内核 + 对话式 agent �
 ## 安装
 
 ```bash
-cd logos-lite
-pip install -e .          # 得到 lt 命令
+cd hctool
+pip install -e .          # 得到 hct 命令
 pytest tests/             # 20+ 用例全绿
 ```
 
-网关：沿用现有 BigModel 网关，`lt run` 会自动转发
+网关：沿用现有 BigModel 网关，`hct run` 会自动转发
 `ANTHROPIC_BASE_URL / ANTHROPIC_AUTH_TOKEN / ANTHROPIC_MODEL` 等环境变量给每个节点。
 
 ## 快速上手
@@ -19,24 +19,24 @@ pytest tests/             # 20+ 用例全绿
 ```bash
 cd campaigns/ches2026-prep
 
-lt validate                  # 校验 pipeline.yaml DAG
-lt validate -f pipeline-mini.yaml
-lt run                       # 跑完整 DAG（tmux 会话 lt-<run_id>）
-lt run -f pipeline-mini.yaml # 冒烟：lc_ctrl scout→hunter 两节点
-lt status                    # 状态总览
-lt attach <node>             # 进入某节点窗口观察（fcntl 锁防抢键）
-lt log <node>                # 看节点终端日志
-lt accept correlator         # checkpoint 节点人工放行
-lt seed <node> "补充信息"    # 运行中向节点投递消息（持久队列）
-lt retry <node> / lt dismiss <node>
-lt resume                    # 中断后续跑（workdir 持久，run 状态可恢复）
-lt stop                      # 停止（幂等）
+hct validate                  # 校验 pipeline.yaml DAG
+hct validate -f pipeline-mini.yaml
+hct run                       # 跑完整 DAG（tmux 会话 hct-<run_id>）
+hct run -f pipeline-mini.yaml # 冒烟：lc_ctrl scout→hunter 两节点
+hct status                    # 状态总览
+hct attach <node>             # 进入某节点窗口观察（fcntl 锁防抢键）
+hct log <node>                # 看节点终端日志
+hct accept correlator         # checkpoint 节点人工放行
+hct seed <node> "补充信息"    # 运行中向节点投递消息（持久队列）
+hct retry <node> / hct dismiss <node>
+hct resume                    # 中断后续跑（workdir 持久，run 状态可恢复）
+hct stop                      # 停止（幂等）
 ```
 
 ## 目录
 
 ```
-logos-lite/         引擎：2s 轮询状态机、tmux 会话管理、complete.marker 两段式完成、
+hctool/         引擎：2s 轮询状态机、tmux 会话管理、complete.marker 两段式完成、
                 checkpoint/seed/retry、claude-only 后端（Stop hook + offline 机器强制）
 agents/         8 角色合同（中文四段式 + sidecar：lenses/FORMAT/WORKORDER/EVIDENCE/FIELDS）
 knowledge/      12 个 RTL 漏洞模式（含 GT 实例与盲检方法）+ OT 安全笔记 + 规则/方法论

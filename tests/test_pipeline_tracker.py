@@ -4,9 +4,9 @@ from pathlib import Path
 
 import pytest
 
-from logos_lite.pipeline import PipelineError, load_config
-from logos_lite.schema import NodeStatus
-from logos_lite.tracker import JobState, RunTracker
+from hctool.pipeline import PipelineError, load_config
+from hctool.schema import NodeStatus
+from hctool.tracker import JobState, RunTracker
 
 
 @pytest.fixture
@@ -189,8 +189,8 @@ class TestEnvMerge:
 class TestScaffold:
     def test_prepare_node_files_snapshots_sidecars(self, project: Path):
         """agent.md 旁的 sidecar（如 lenses.md）必须快照进节点目录。"""
-        from logos_lite.bootstrap import prepare_node_files
-        from logos_lite.layout import Workspace, Execution
+        from hctool.bootstrap import prepare_node_files
+        from hctool.layout import Workspace, Execution
 
         (project / "agents" / "alpha" / "lenses.md").write_text("# lenses\n")
         (project / "pipeline.yaml").write_text(MINIMAL_YAML)
@@ -210,7 +210,7 @@ class TestScaffold:
         ).read_text(encoding="utf-8") == "改过的\n"
 
     def test_agent_new_template(self, project: Path, monkeypatch, capsys):
-        from logos_lite import commands as cli
+        from hctool import commands as cli
 
         args = type("A", (), {"project": None, "action": "new", "name": "beta"})()
         monkeypatch.chdir(project)
@@ -220,7 +220,7 @@ class TestScaffold:
         assert "## 角色" in md.read_text(encoding="utf-8")
 
     def test_validate_output(self, project: Path, capsys, monkeypatch):
-        from logos_lite import commands as cli
+        from hctool import commands as cli
 
         (project / "pipeline.yaml").write_text(MINIMAL_YAML)
         args = type(
