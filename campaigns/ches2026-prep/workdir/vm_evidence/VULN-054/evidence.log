@@ -1,0 +1,52 @@
+======================================================================
+VULN-054: entropy_src SHA3 EnMasking=0 + rand all zeros
+======================================================================
+
+[1] Checking Sha3EnMasking parameter ...
+  Line 80: localparam bit Sha3EnMasking = 0
+  [CONFIRMED] Sha3EnMasking = 0 (masking disabled)
+
+[2] Checking Sha3Share derived parameter ...
+  Line 82: Sha3Share = (Sha3EnMasking) ? 2 : 1
+  With EnMasking=0: Sha3Share = 1 (single share, no DOM masking)
+
+[3] Checking SHA3 instantiation EnMasking pass-through ...
+  Line 2737: .EnMasking (Sha3EnMasking) — passes 0 to sha3 module
+
+[4] Checking SHA3 rand interface connections ...
+  Line 2749: .rand_valid_i (1'b0) — [DISCONNECTED (zero)]
+  Line 2750: .rand_early_i (1'b0) — [DISCONNECTED (zero)]
+  Line 2751: .rand_data_i ('0) — [DISCONNECTED (zero)]
+  Line 2752: .rand_aux_i ('0) — [DISCONNECTED (zero)]
+  Line 2753: .rand_update_o (<empty>) — [UNCONNECTED]
+  Line 2754: .rand_consumed_o (<empty>) — [UNCONNECTED]
+  [CONFIRMED] All 6 rand signals disconnected/zero — no SCA randomness
+
+[5] Sibling module comparison (KMAC oracle) ...
+  KMAC kmac.sv: EnMasking = 1
+  KMAC kmac.sv: SHA3 rand connected = True
+  [ORACLE] KMAC uses EnMasking=1 with connected rand — entropy_src deviates
+
+[6] Impact analysis ...
+  With Sha3EnMasking=0:
+    - SHA3 operates with 1 share (unmasked)
+    - Keccak round function has no DOM masking
+    - All intermediate state is deterministic (no random masks)
+    - rand inputs all zeros: no PRD masking material available
+    - SCA attacker can directly observe Keccak state transitions
+  Contrast KMAC (EnMasking=1, rand connected):
+    - SHA3 operates with 2 shares (masked)
+    - Keccak uses Domain-Oriented Masking (DOM)
+    - rand provides fresh randomness each round
+    - SCA protection via random mask shares
+
+======================================================================
+SUMMARY
+======================================================================
+  Confirmation checks passed: 5/5
+  VULN-054: entropy_src SHA3 EnMasking=0 + rand all zeros
+  Finding: SHA3 conditioning has zero SCA protection — no masking,
+  no randomness input. All Keccak state is unmasked and deterministic.
+
+  CONFIRMED: SHA3 masking disabled + rand disconnected (exit 1)
+

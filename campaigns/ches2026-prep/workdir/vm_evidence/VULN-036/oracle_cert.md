@@ -1,0 +1,38 @@
+# Oracle Certification — VULN-036
+
+Generated: 2026-10-09 18:32 UTC
+VM verification exit code: 1 (1 = confirmed)
+Local verdict: None
+Fidelity: None
+VM result: VM-CONFIRMED
+
+## Twin Repair Diff
+
+(see RESULT.md for twin diff details)
+
+## Oracle References
+
+- Oracle: standard FF async reset pattern used by every other register in aes_core (key_init_reg,
+- Oracle: standard FF async reset pattern used by all other regs in aes_core;
+- Oracle: standard FF async reset pattern (all other regs in same file) + SEC_CM: DATA_REG.SEC_WIPE
+
+## Evidence Log (excerpt)
+
+```
+make: Entering directory '/tmp/poc_vuln036_k0zefuid/obj_dir'
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o sim_main.o /tmp/vuln_verify/VULN-036/sim_main.cpp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /tools/verilator/4.210/share/verilator/include/verilated.cpp
+/usr/bin/perl /tools/verilator/4.210/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb.cpp Vtb___024root.cpp Vtb___024root__Slow.cpp Vtb__Syms.cpp > Vtb__ALL.cpp
+echo "" > Vtb__ALL.verilator_deplist.tmp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vtb__ALL.o Vtb__ALL.cpp
+Archive ar -rcs Vtb__ALL.a Vtb__ALL.o
+g++-11    sim_main.o verilated.o Vtb__ALL.a      -o Vtb
+rm Vtb__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/poc_vuln036_k0zefuid/obj_dir'
+VULN-036 data_out reset with we=HIGH: vuln retained nonzero: YES  twin cleared: YES
+CONFIRMED: aes_core.sv:873 data_out_reg async reset gated by data_out_we.
+When reset is asserted while we==SP2V_HIGH, the vuln retains the previous
+value (gate blocks clearing) while the twin (unconditional reset) clears.
+Oracle: standard FF async reset pattern used by all other regs in aes_core;
+SEC_CM: DATA_REG.SEC_WIPE requires reset clears sensitive data.
+```

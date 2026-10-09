@@ -1,0 +1,39 @@
+# Oracle Certification — VULN-055
+
+Generated: 2026-10-09 18:33 UTC
+VM verification exit code: 1 (1 = confirmed)
+Local verdict: None
+Fidelity: None
+VM result: VM-CONFIRMED
+
+## Twin Repair Diff
+
+(see RESULT.md for twin diff details)
+
+## Oracle References
+
+- Oracle**: SEC_CM: CONFIG.REDUN comment at line 2179. When `alert_threshold = 0`, alerting is disabled, so BOTH paths must be off. The guard should be consistent across both paths.
+- oracle: SEC_CM: CONFIG.REDUN requires symmetric dual-path; threshold=0 means disabled
+
+## Evidence Log (excerpt)
+
+```
+make: Entering directory '/tmp/poc_vuln055_wbnmt_fz/obj_dir'
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o sim_main.o /tmp/vuln_verify/VULN-055/sim_main.cpp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /tools/verilator/4.210/share/verilator/include/verilated.cpp
+/usr/bin/perl /tools/verilator/4.210/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb.cpp Vtb___024root.cpp Vtb___024root__Slow.cpp Vtb__Syms.cpp > Vtb__ALL.cpp
+echo "" > Vtb__ALL.verilator_deplist.tmp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vtb__ALL.o Vtb__ALL.cpp
+Archive ar -rcs Vtb__ALL.a Vtb__ALL.o
+g++-11    sim_main.o verilated.o Vtb__ALL.a      -o Vtb
+rm Vtb__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/poc_vuln055_wbnmt_fz/obj_dir'
+cycles=1
+vuln_deviation: YES
+twin_secure:    YES
+CONFIRMED: alert_threshold_fail dual-path boundary asymmetry
+  vuln: with threshold=0, inv=0 (inconsistent), INV path fires (guard: ~inv!=0 passes)
+        but direct path disabled (guard: thresh!=0 fails) → alert_threshold_fail=1
+  twin: both paths gated by alert_threshold!=0 → consistently 0 when threshold=0
+  oracle: SEC_CM CONFIG.REDUN requires symmetric dual-path; threshold=0 means disabled
+```

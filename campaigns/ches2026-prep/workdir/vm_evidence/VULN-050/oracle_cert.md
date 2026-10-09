@@ -1,0 +1,31 @@
+# Oracle Certification — VULN-050
+
+Generated: 2026-10-09 18:33 UTC
+VM verification exit code: 1 (1 = confirmed)
+Local verdict: None
+Fidelity: None
+VM result: VM-CONFIRMED
+
+## Twin Repair Diff
+
+(see RESULT.md for twin diff details)
+
+## Oracle References
+
+- Oracle: line 161 comment `// TODO  add blinding` + sibling IPs (AES/KMAC) use
+
+## Evidence Log (excerpt)
+
+```
+Traceback (most recent call last):
+  File "/tmp/vuln_verify/VULN-050/exploit.py", line 98, in <module>
+    main()
+  File "/tmp/vuln_verify/VULN-050/exploit.py", line 51, in main
+    shutil.copy2(os.path.join(repo, f), os.path.join(tmpdir, f))
+  File "/usr/lib/python3.12/shutil.py", line 475, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.12/shutil.py", line 260, in copyfile
+    with open(src, 'rb') as fsrc:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/participant/opentitan/tb_ascon_sca_blinding.sv'
+```

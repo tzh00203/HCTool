@@ -1,0 +1,6 @@
+[Check 1] msg_mask register field: FOUND
+[Check 2] MSG.MASKING in vuln countermeasures: NOT FOUND
+[Check 3] MSG.MASKING in twin countermeasures: FOUND
+
+VERDICT: CONFIRMED — vuln hjson missing MSG.MASKING SEC_CM declaration
+msg_mask register field exists (line 559) but countermeasures list omits MSG.MASKING

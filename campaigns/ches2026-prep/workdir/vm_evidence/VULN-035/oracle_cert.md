@@ -1,0 +1,40 @@
+# Oracle Certification — VULN-035
+
+Generated: 2026-10-09 18:32 UTC
+VM verification exit code: 1 (1 = confirmed)
+Local verdict: None
+Fidelity: None
+VM result: VM-CONFIRMED
+
+## Twin Repair Diff
+
+(see RESULT.md for twin diff details)
+
+## Oracle References
+
+- Oracle**: SEC_CM: DATA_REG.SEC_WIPE comment immediately above the vuln code; all
+- Oracle: SEC_CM: DATA_REG.SEC_WIPE comment + all sibling SEC_WIPE registers
+- Oracle: SEC_CM: DATA_REG.SEC_WIPE + sibling register patterns (key_init, iv, data_out)
+
+## Evidence Log (excerpt)
+
+```
+make: Entering directory '/tmp/poc_vuln035_g4m6ut0z/obj_dir'
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o sim_main.o /tmp/vuln_verify/VULN-035/sim_main.cpp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /tools/verilator/4.210/share/verilator/include/verilated.cpp
+/usr/bin/perl /tools/verilator/4.210/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb.cpp Vtb___024root.cpp Vtb___024root__Slow.cpp Vtb__Syms.cpp > Vtb__ALL.cpp
+echo "" > Vtb__ALL.verilator_deplist.tmp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vtb__ALL.o Vtb__ALL.cpp
+Archive ar -rcs Vtb__ALL.a Vtb__ALL.o
+g++-11    sim_main.o verilated.o Vtb__ALL.a      -o Vtb
+rm Vtb__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/poc_vuln035_g4m6ut0z/obj_dir'
+data_in .de/.d check: vuln_deviation=YES  twin_secure=YES
+CONFIRMED: aes_core.sv:686-689 data_in_reg_clear drives .de (data_in_we)
+but never assigns .d. When SEC_WIPE triggers (data_in_we=1), .d is undefined
+(synthesis tie-off to 0 or old value) instead of prd_clearing_data.
+Secure wipe is a no-op: data_in register retains or zeros instead of PRD.
+Twin fix: add hw2reg.data_in[i].d = prd_clearing_data[i] in the loop.
+Oracle: SEC_CM: DATA_REG.SEC_WIPE comment + all sibling SEC_WIPE registers
+(key_init, iv, data_out) assign both .de and .d with PRD.
+```

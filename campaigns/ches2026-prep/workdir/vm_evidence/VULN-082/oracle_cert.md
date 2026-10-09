@@ -1,0 +1,61 @@
+# Oracle Certification — VULN-082
+
+Generated: 2026-10-09 18:34 UTC
+VM verification exit code: 1 (1 = confirmed)
+Local verdict: None
+Fidelity: None
+VM result: VM-CONFIRMED
+
+## Twin Repair Diff
+
+(see RESULT.md for twin diff details)
+
+## Oracle References
+
+- Oracle: sibling IP FIFO write gating pattern (AES/KMAC/HMAC).
+- Oracle: `prim_reg_we_check` contract.
+- Oracle: security-critical UART applications requiring asymmetric baud.
+- Oracle: sibling IP SEC_CM coverage (AES=8+, KMAC=5+, HMAC=3+).
+- Oracle: sibling IP patterns (AES/KMAC/HMAC gate FIFO writes on enable,
+- Oracle C1: sibling IPs (AES/KMAC/HMAC) gate FIFO writes on module enable
+- Oracle C2: security-critical designs require independent TX/RX rate control
+- Oracle: prim_reg_we_check contract requires each bit to track actual we activity
+- Oracle: sibling IP SEC_CM coverage
+- SEC_CM sparse
+
+## Evidence Log (excerpt)
+
+```
+make: Entering directory '/tmp/poc_vuln082_198yzpp3/obj_dir'
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o sim_main.o /tmp/vuln_verify/VULN-082/sim_main.cpp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /tools/verilator/4.210/share/verilator/include/verilated.cpp
+/usr/bin/perl /tools/verilator/4.210/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb.cpp Vtb___024root.cpp Vtb___024root__Slow.cpp Vtb__Syms.cpp > Vtb__ALL.cpp
+echo "" > Vtb__ALL.verilator_deplist.tmp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vtb__ALL.o Vtb__ALL.cpp
+Archive ar -rcs Vtb__ALL.a Vtb__ALL.o
+g++-11    sim_main.o verilated.o Vtb__ALL.a      -o Vtb
+rm Vtb__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/poc_vuln082_198yzpp3/obj_dir'
+VULN-082: UART 4 structural fragility issues
+
+Issue 1 — rx_fifo_wvalid missing rx_enable gate:
+  vuln: wvalid=1 when rx_enable=0 (ungated): YES
+  twin: wvalid=0 when rx_enable=0 (gated):   YES
+Issue 2 — reg_we_check RO registers hardcoded to 0:
+  vuln: RO write fault not detected (check=0): YES
+  twin: RO write fault detected (check=we):    YES
+Issue 3 — TX/RX baud share single NCO:
+  vuln: TX/RX must use same NCO (no independent): YES
+  twin: TX/RX can use different NCO (independent): YES
+Issue 4 — SEC_CM sparse (only BUS.INTEGRITY):
+  vuln: SEC_CM count (1) < sibling minimum (3): YES
+  twin: SEC_CM count (7) >= sibling minimum (3): YES
+
+CONFIRMED: uart_core.sv 4 structural fragility issues:
+  1. rx_fifo_wvalid (line 282): missing rx_enable gate — defense-in-depth gap
+  2. reg_we_check (uart_reg_top.sv:1771-1772): RO register checks hardcoded 0
+  3. TX/RX baud (lines 167-175): single NCO shared, no independent rate control
+  4. SEC_CM: only BUS.INTEGRITY (1), missing FSM/CFG/INT_LOC/RX_FIFO/TX_OVRD/BAUD
+  Oracle: sibling IP patterns (AES/KMAC/HMAC gate FIFO writes on enable,
+  check RO register writes, declare 3-8+ SEC_CM entries)
+```

@@ -1,0 +1,37 @@
+# Oracle Certification — VULN-004
+
+Generated: 2026-10-09 18:31 UTC
+VM verification exit code: 1 (1 = confirmed)
+Local verdict: [poc-success]
+Fidelity: None
+VM result: VM-CONFIRMED
+
+## Twin Repair Diff
+
+(see RESULT.md for twin diff details)
+
+## Oracle References
+
+- Oracle: `lc_ctrl_state_pkg::LcTokenWidth = 128`; `lc_token_t = logic[127:0]`.
+- Oracle: lc_ctrl_state_pkg::LcTokenWidth=128
+
+## Evidence Log (excerpt)
+
+```
+make: Entering directory '/tmp/poc_vuln004_dy389en1/obj_dir'
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o sim_main.o /tmp/vuln_verify/VULN-004/sim_main.cpp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /tools/verilator/4.210/share/verilator/include/verilated.cpp
+/usr/bin/perl /tools/verilator/4.210/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb.cpp Vtb___024root.cpp Vtb___024root__Slow.cpp Vtb__Syms.cpp > Vtb__ALL.cpp
+echo "" > Vtb__ALL.verilator_deplist.tmp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vtb__ALL.o Vtb__ALL.cpp
+Archive ar -rcs Vtb__ALL.a Vtb__ALL.o
+g++-11    sim_main.o verilated.o Vtb__ALL.a      -o Vtb
+rm Vtb__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/poc_vuln004_dy389en1/obj_dir'
+vuln_match(truncated 32-bit): YES  twin_match(full 128-bit): YES(rejects)
+CONFIRMED: lc_ctrl_fsm.sv:456,:497 token comparison truncated 128->32 bits
+  vuln: hashed_token_i[31:0]==hashed_token_mux[31:0] -> collision (match=1)
+  twin: hashed_token_i==hashed_token_mux -> correctly rejects (match=0)
+  Collision space: 2^128 (intended) -> 2^32 (vuln)
+  Oracle: lc_ctrl_state_pkg::LcTokenWidth=128
+```

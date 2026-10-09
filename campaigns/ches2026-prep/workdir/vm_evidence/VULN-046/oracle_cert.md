@@ -1,0 +1,41 @@
+# Oracle Certification — VULN-046
+
+Generated: 2026-10-09 18:33 UTC
+VM verification exit code: 1 (1 = confirmed)
+Local verdict: None
+Fidelity: None
+VM result: VM-CONFIRMED
+
+## Twin Repair Diff
+
+(see RESULT.md for twin diff details)
+
+## Oracle References
+
+- Oracle: TODO comments on lines 328-332 + sibling IPs (AES/KMAC) + hjson STATUS spec
+- Oracle: TODO comment + sibling IPs + hjson spec
+
+## Evidence Log (excerpt)
+
+```
+make: Entering directory '/tmp/poc_vuln046_g36y__oh/obj_dir'
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o sim_main.o /tmp/vuln_verify/VULN-046/sim_main.cpp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /tools/verilator/4.210/share/verilator/include/verilated.cpp
+/usr/bin/perl /tools/verilator/4.210/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb.cpp Vtb___024root.cpp Vtb___024root__Slow.cpp Vtb__Syms.cpp > Vtb__ALL.cpp
+echo "" > Vtb__ALL.verilator_deplist.tmp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vtb__ALL.o Vtb__ALL.cpp
+Archive ar -rcs Vtb__ALL.a Vtb__ALL.o
+g++-11    sim_main.o verilated.o Vtb__ALL.a      -o Vtb
+rm Vtb__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/poc_vuln046_g36y__oh/obj_dir'
+Stall scenario (msg_out_valid=1, msg_out_ready=0):
+  vuln stall=0 (hardcoded)  twin stall = msg_out_valid & ~msg_out_ready = 1
+Wait_edn scenario (edn_fifo_ready=0):
+  vuln wait_edn=0 (hardcoded)  twin wait_edn = ~edn_fifo_ready = 1
+vuln_deviation: YES
+twin_secure:    YES
+CONFIRMED: ascon_core.sv:329-332 STATUS.stall/wait_edn hardcoded to 1'b0
+  vuln: stall=0, wait_edn=0 always — SW cannot detect backpressure or EDN starvation
+  twin: stall=msg_out_valid&~msg_out_ready, wait_edn=~edn_fifo_ready
+  Oracle: TODO comments on lines 328-332 + sibling IPs (AES/KMAC) + hjson STATUS spec
+```

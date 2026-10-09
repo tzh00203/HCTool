@@ -6,7 +6,7 @@ control: true
 env:
   OT_TREE: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/opentitan_blind
   VERILATOR: /data_hdd/tzh24/zgc4/projects/tools/logos/logos-workspace/contexts/targets/opentitan-ches2026/runtime-samples/verilator-4.210/v4.210
-  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/hctool
+  HARNESS: /data_hdd/tzh24/zgc4/ctf/hack_ches2026/logos-lite
 nodes:
   oracle-scout-aes:
     agent: oracle-scout

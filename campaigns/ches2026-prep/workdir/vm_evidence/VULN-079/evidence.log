@@ -1,0 +1,57 @@
+Repo: /home/participant/opentitan
+Running VULN-079 static verification (L4)...
+Repo: /home/participant/opentitan
+VULN-079: rom_ctrl checker-side ROM address redundancy / FSM enum / PRINCE params
+
+=== F1: Checker-side address redundancy ===
+  rom_rom_addr_o    (line 123): assign rom_rom_addr_o    = mubi4_test_true_strict(sel_bus_i) ? bus_rom_addr_i    : chk_addr_i;
+  rom_prince_addr_o (line 124): assign rom_prince_addr_o = mubi4_test_true_strict(sel_bus_i) ? bus_prince_addr_i : chk_addr_i;
+  CONFIRMED: Both rom_rom_addr_o and rom_prince_addr_o use chk_addr_i on checker path
+  CONFIRMED: Bus path uses different sources (bus_rom_addr_i vs bus_prince_addr_i)
+  NOTE: scrambled_rom design intent comment not found
+  CONFIRMED: rom_ctrl.sv bus-side has separate PRINCE address (TL snoop)
+  CONFIRMED: No chk_prince_addr_i port in vuln mux (no checker-side redundancy)
+  F1 VERDICT: CONFIRMED — checker-side address has no redundancy
+
+=== F2: FSM enumeration dependency ===
+  CONFIRMED: fsm_state_e defined as typedef enum logic [9:0]
+  NOTE: fsm_state_e enum pattern not matched exactly, checking alternatives
+  CONFIRMED: No synthesis attribute to preserve encoding — tool may re-encode
+  CONFIRMED: Sparse encoding documented (sparse-fsm-encode.py -d 3 -m 7 -n 6 -s 2)
+  Computed minimum Hamming distance: 3
+  CONFIRMED: Min Hamming distance 3 >= 3 (sparse encoding valid)
+  CONFIRMED: mubi4_t tail bits encode 'state == Done' (True=1010 for Done, False=0101 for others)
+  CONFIRMED: rom_ctrl_fsm.sv uses PRIM_FLOP_SPARSE_FSM with fsm_state_e enum type
+  F2 VERDICT: CONFIRMED — FSM encoding depends on enum (no synthesis preserve attribute)
+
+=== F3: PRINCE parameters and checker path ===
+  PRINCE parameters found:
+    KeyWidth: line 110: .KeyWidth       (128),
+    NumRoundsHalf: line 111: .NumRoundsHalf  (3),
+    HalfwayDataReg: line 112: .HalfwayDataReg (1'b1),
+    HalfwayKeyReg: line 113: .HalfwayKeyReg  (1'b1)
+  CONFIRMED: PRINCE NumRoundsHalf=3 (7 effective rounds)
+  CONFIRMED: PRINCE data_i incorporates prince_addr_i (address-tweakable keystream)
+  CONFIRMED: clr_rdata_o = rdata_scr ^ keystream (address-tweakable descrambling)
+  CONFIRMED: chk_addr_i used 3 times in mux (port + both address paths)
+  CONFIRMED: rom_ctrl.sv connects .chk_addr_i(checker_rom_index) — single source
+  CONFIRMED: No separate chk_prince_addr_i connection — checker PRINCE uses same address
+  Counter address outputs: read_addr_o + data_addr_o (both from same counter)
+  CONFIRMED: Counter produces single address source — no separate PRINCE address
+  F3 VERDICT: CONFIRMED — checker path uses same address for ROM and PRINCE,
+             defeating address-tweakable keystream fault protection
+
+=== Twin Diff Verification ===
+  F1 twin fix: assign rom_prince_addr_o = mubi4_test_true_strict(sel_bus_i) ? bus_prince_addr_i : chk_prince_addr_i;
+  CONFIRMED: Twin uses chk_prince_addr_i (not chk_addr_i) for PRINCE on checker path
+  F2 twin fix: FSM values defined as localparam constants (explicit, not enum-dependent)
+
+============================================================
+VULN-079 VERIFICATION SUMMARY
+============================================================
+  F1: CONFIRMED
+  F2: CONFIRMED
+  F3: CONFIRMED
+
+ALL FINDINGS CONFIRMED at L4 (static code walkthrough) fidelity.
+Severity: Info (design hardening gap, not directly exploitable without fault injection)

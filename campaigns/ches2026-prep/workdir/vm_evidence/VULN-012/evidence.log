@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/tmp/vuln_verify/VULN-012/exploit.py", line 50, in <module>
+    main()
+  File "/tmp/vuln_verify/VULN-012/exploit.py", line 26, in main
+    shutil.copy2(os.path.join(repo, f), os.path.join(td, f))
+  File "/usr/lib/python3.12/shutil.py", line 475, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.12/shutil.py", line 260, in copyfile
+    with open(src, 'rb') as fsrc:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/participant/opentitan/tb_msg_mask.sv'

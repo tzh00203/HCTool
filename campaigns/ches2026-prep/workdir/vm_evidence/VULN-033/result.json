@@ -1,0 +1,8 @@
+{
+  "vuln_id": "VULN-033",
+  "status": "VM-CONFIRMED",
+  "vm_exit": 1,
+  "method": "exploit.py",
+  "started": "2026-10-09T18:32:27.756220+00:00",
+  "finished": "2026-10-09T18:32:31.354438+00:00"
+}

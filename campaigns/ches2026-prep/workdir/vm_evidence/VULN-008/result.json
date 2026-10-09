@@ -1,0 +1,8 @@
+{
+  "vuln_id": "VULN-008",
+  "status": "VM-CONFIRMED",
+  "vm_exit": 1,
+  "method": "build.sh",
+  "started": "2026-10-09T18:58:46.528980+00:00",
+  "finished": "2026-10-09T18:58:48.553679+00:00"
+}

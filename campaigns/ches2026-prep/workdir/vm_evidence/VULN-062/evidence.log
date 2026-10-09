@@ -1,0 +1,81 @@
+=== VULN-062 Dynamic Verification (L4 Static Code Walkthrough) ===
+
+--- Finding 1: RLB cross-module usage ---
+
+[ibex_pmp.sv] RLB references:
+4
+
+RLB assigned to unused signal in ibex_pmp.sv: 3 occurrence(s)
+
+[ibex_cs_registers.sv] RLB references:
+9
+
+RLB functionally used in ibex_cs_registers.sv: 2 occurrence(s)
+
+CONFIRMED: RLB is used in ibex_cs_registers.sv for CSR write gating
+          but assigned to unused signal in ibex_pmp.sv (not consumed
+          in access checking). RLB cross-module: partial usage.
+
+--- Finding 2: SEC_CM missing anchors ---
+
+[ibex_pmp.sv] SEC_CM annotations:
+  Count: 0
+
+[ibex_cs_registers.sv] SEC_CM annotations:
+802:            // SEC_CM: EXCEPTION.CTRL_FLOW.LOCAL_ESC
+803:            // SEC_CM: EXCEPTION.CTRL_FLOW.GLOBAL_ESC
+828:        // SEC_CM: EXCEPTION.CTRL_FLOW.LOCAL_ESC
+829:        // SEC_CM: EXCEPTION.CTRL_FLOW.GLOBAL_ESC
+1629:    // SEC_CM: CORE.DATA_REG_SW.SCA
+1645:    // SEC_CM: CTRL_FLOW.UNPREDICTABLE
+  Count: 6
+
+[ibex_pmp.sv] MSECCFG field usage (mml/mmwp used, rlb unused):
+21:  input  ibex_pkg::pmp_mseccfg_t  csr_pmp_mseccfg_i,
+52:  // basic_perm_check ---> perm_check_wrapper ---> mml_perm_check/orig_perm_check ---/
+60:  function automatic logic mml_perm_check(ibex_pkg::pmp_cfg_t  region_csr_pmp_cfg,
+114:  function automatic logic perm_check_wrapper(logic                csr_pmp_mseccfg_mml,
+119:    return csr_pmp_mseccfg_mml ? mml_perm_check(region_csr_pmp_cfg,
+129:  function automatic logic access_fault_check (logic                     csr_pmp_mseccfg_mmwp,
+130:                                               logic                     csr_pmp_mseccfg_mml,
+234:        enhanced_permission_result = perm_check_wrapper(csr_pmp_mseccfg_i.mml,
+274:      fault_analysis_result = access_fault_check(csr_pmp_mseccfg_i.mmwp,
+275:                                                 csr_pmp_mseccfg_i.mml,
+304:    unused_config_fields[0] = csr_pmp_mseccfg_i.rlb;
+308:  logic unused_csr_pmp_mseccfg_rlb;
+309:  assign unused_csr_pmp_mseccfg_rlb = |unused_config_fields;
+
+CONFIRMED: ibex_pmp.sv has ZERO SEC_CM anchors despite implementing
+          security-critical PMP access checking with MML, MMWP, and
+          lock bits. Missing: PMP.CFG.SW_NO_ACCESS, PMP.CFG.SW_REGWEN,
+          PMP.MSECCFG.RLB
+
+--- Finding 3: napot_mask truncation ---
+
+[ibex_cs_registers.sv] napot_mask / pmp_addr_rdata logic:
+1146:          assign pmp_addr_rdata[i] = pmp_addr[i];
+1148:        end else if (PMPGranularity == 1) begin : g_pmp_g1
+1154:            pmp_addr_rdata[i] = pmp_addr[i];
+1162:        end else begin : g_pmp_g2
+1166:            logic [PMPGranularity-2:0] napot_mask;
+1167:            napot_mask = {(PMPGranularity){1'b1}};
+1168:            pmp_addr_rdata[i] = {pmp_addr[i], napot_mask};
+
+CONFIRMED: napot_mask width mismatch at:
+  1167:            napot_mask = {(PMPGranularity){1'b1}};
+  LHS: logic [PMPGranularity-2:0] (width = PMPGranularity-1)
+  RHS: {(PMPGranularity){1'b1}}  (width = PMPGranularity)
+  MSB of RHS truncated. Functional effect: all-1s assignment still
+  produces all-1s in LHS, so no functional change for this case.
+  However, NAPOT address readback in g_pmp_g2 always fills lower
+  bits with all-1s regardless of stored address pattern.
+
+=== VERIFICATION SUMMARY ===
+
+F1 (RLB unused in ibex_pmp): CONFIRMED
+F2 (SEC_CM missing anchors): CONFIRMED
+F3 (napot_mask truncation):  CONFIRMED (info)
+
+ALL FINDINGS CONFIRMED at L4 (static code walkthrough) fidelity.
+F1/F2: sec-cm-mismatch confirmed. F3: informational (width mismatch, no functional impact).
+Exit code: 0 (analysis complete, findings at L4 informational level)

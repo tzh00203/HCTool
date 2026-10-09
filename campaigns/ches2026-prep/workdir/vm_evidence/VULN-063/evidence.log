@@ -1,0 +1,90 @@
+%Error: Cannot find file containing module: /tmp/vuln_verify/VULN-063
+        ... Looked in:
+             //tmp/vuln_verify/VULN-063
+             //tmp/vuln_verify/VULN-063.v
+             //tmp/vuln_verify/VULN-063.sv
+             /tmp/vuln_verify/VULN-063
+             /tmp/vuln_verify/VULN-063.v
+             /tmp/vuln_verify/VULN-063.sv
+             /tmp/poc_vuln063_eeonh945/obj_dir//tmp/vuln_verify/VULN-063
+             /tmp/poc_vuln063_eeonh945/obj_dir//tmp/vuln_verify/VULN-063.v
+             /tmp/poc_vuln063_eeonh945/obj_dir//tmp/vuln_verify/VULN-063.sv
+%Error-PKGNODECL: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:23:10: Package/class 'ibex_pkg' not found, and needs to be predeclared (IEEE 1800-2017 26.3)
+   23 |   input  ibex_pkg::pmp_cfg_t      csr_pmp_cfg_i     [PMPNumRegions],
+      |          ^~~~~~~~
+                  ... For error description see https://verilator.org/warn/PKGNODECL?v=4.210
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:23:20: syntax error, unexpected IDENTIFIER, expecting TYPE-IDENTIFIER
+   23 |   input  ibex_pkg::pmp_cfg_t      csr_pmp_cfg_i     [PMPNumRegions],
+      |                    ^~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:25:3: syntax error, unexpected input
+   25 |   input  ibex_pkg::pmp_mseccfg_t  csr_pmp_mseccfg_i,
+      |   ^~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:29:3: syntax error, unexpected input
+   29 |   input  ibex_pkg::priv_lvl_e     priv_mode_i    [PMPNumChan],
+      |   ^~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:31:3: syntax error, unexpected input
+   31 |   input  ibex_pkg::pmp_req_e      pmp_req_type_i [PMPNumChan],
+      |   ^~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:34:1: syntax error, unexpected ')', expecting ',' or ';'
+   34 | );
+      | ^
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:36:10: Importing from missing package 'ibex_pkg'
+   36 |   import ibex_pkg::*;
+      |          ^~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:59:53: syntax error, unexpected IDENTIFIER, expecting TYPE-IDENTIFIER
+   59 |   function automatic logic mml_perm_check(ibex_pkg::pmp_cfg_t  region_csr_pmp_cfg,
+      |                                                     ^~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:66:5: syntax error, unexpected if
+   66 |     if (!region_csr_pmp_cfg.read && region_csr_pmp_cfg.write) begin
+      |     ^~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:92:54: syntax error, unexpected IDENTIFIER, expecting TYPE-IDENTIFIER
+   92 |                                            ibex_pkg::priv_lvl_e priv_mode,
+      |                                                      ^~~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:100:57: syntax error, unexpected IDENTIFIER, expecting TYPE-IDENTIFIER
+  100 |                                               ibex_pkg::pmp_cfg_t  region_csr_pmp_cfg,
+      |                                                         ^~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:115:58: syntax error, unexpected IDENTIFIER, expecting TYPE-IDENTIFIER
+  115 |                                                ibex_pkg::pmp_req_e       pmp_req_type,
+      |                                                          ^~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:117:48: syntax error, unexpected IDENTIFIER-::
+  117 |                                                ibex_pkg::priv_lvl_e      priv_mode,
+      |                                                ^~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:118:90: syntax error, unexpected ')', expecting ',' or ';'
+  118 |                                                logic [PMPNumRegions-1:0] final_perm_check);
+      |                                                                                          ^
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:123:5: syntax error, unexpected for
+  123 |     for (int r = 0; r < PMPNumRegions; r++) begin
+      |     ^~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:123:21: syntax error, unexpected IDENTIFIER
+  123 |     for (int r = 0; r < PMPNumRegions; r++) begin
+      |                     ^
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:188:7: syntax error, unexpected always_comb
+  188 |       always_comb begin
+      |       ^~~~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:212:5: syntax error, unexpected always_comb
+  212 |     always_comb begin
+      |     ^~~~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:221:5: syntax error, unexpected always_comb
+  221 |     always_comb begin
+      |     ^~~~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:237:5: syntax error, unexpected always_comb
+  237 |     always_comb begin
+      |     ^~~~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv:250:3: syntax error, unexpected assign
+  250 |   assign unused_csr_pmp_mseccfg_rlb = csr_pmp_mseccfg_i.rlb;
+      |   ^~~~~~
+%Error: //tmp/vuln_verify/VULN-063/tb_pmp_mseccfg.sv:24:10: Importing from missing package 'ibex_pkg'
+   24 |   import ibex_pkg::*;
+      |          ^~~~~~~~
+%Error: //tmp/vuln_verify/VULN-063/tb_pmp_mseccfg.sv:28:13: syntax error, unexpected IDENTIFIER, expecting TYPE-IDENTIFIER
+   28 |   ibex_pkg::pmp_cfg_t cfg      [NUMR];
+      |             ^~~~~~~~~
+%Error: Exiting due to 24 error(s)
+Traceback (most recent call last):
+  File "/tmp/vuln_verify/VULN-063/exploit.py", line 89, in <module>
+    main()
+  File "/tmp/vuln_verify/VULN-063/exploit.py", line 70, in main
+    subprocess.run(
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/participant/verilator/bin/verilator', '-sv', '--cc', '--exe', '--build', '-j', '2', '-Wno-fatal', '-Wno-WIDTH', '-Wno-DECLFILENAME', '-Wno-UNOPTFLAT', '--Mdir', '/tmp/poc_vuln063_eeonh945/obj_dir', '-I', '/tmp/vuln_verify/VULN-063', '--top-module', 'tb', '/tmp/vuln_verify/VULN-063/dv_fcov_macros.svh', '/tmp/vuln_verify/VULN-063/ibex_pmp_twin.sv', '/tmp/vuln_verify/VULN-063/tb_pmp_mseccfg.sv', '/tmp/vuln_verify/VULN-063/sim_main.cpp', '/home/participant/opentitan/hw/vendor/lowrisc_ibex/rtl/ibex_pkg.sv', '/home/participant/opentitan/hw/vendor/lowrisc_ibex/rtl/ibex_pmp.sv']' returned non-zero exit status 1.

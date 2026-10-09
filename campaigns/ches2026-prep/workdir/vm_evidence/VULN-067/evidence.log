@@ -1,0 +1,13 @@
+[Part 1] Commented-out SVA in sha3pad.sv: 3 found
+  Line 769: ASSUME Sequence_a commented out
+  Line 835: ASSERT ProcessToAbsorbed_A commented out
+  Line 875: ASSUME NsStableInProcess_A commented out
+
+[Part 2] msg_mask signal dangling in kmac.sv:
+  msg_mask_permuted declared: True
+  msg_mask_permuted computed: True
+  msg_data_masked uses static_mask: True
+  static_mask = all-ones: True
+  msg_mask from kmac_entropy: True
+
+VERDICT: CONFIRMED — 3 SVA commented out in sha3pad + msg_mask_permuted dangling in kmac (static_mask used instead)

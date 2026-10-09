@@ -1,0 +1,30 @@
+%Error: Cannot find file containing module: /home/participant/opentitan/hw/ip/prim/rtl
+        ... Looked in:
+             //home/participant/opentitan/hw/ip/prim/rtl
+             //home/participant/opentitan/hw/ip/prim/rtl.v
+             //home/participant/opentitan/hw/ip/prim/rtl.sv
+             /home/participant/opentitan/hw/ip/prim/rtl
+             /home/participant/opentitan/hw/ip/prim/rtl.v
+             /home/participant/opentitan/hw/ip/prim/rtl.sv
+             /tmp/poc_vuln047_myy3lra0/obj_dir//home/participant/opentitan/hw/ip/prim/rtl
+             /tmp/poc_vuln047_myy3lra0/obj_dir//home/participant/opentitan/hw/ip/prim/rtl.v
+             /tmp/poc_vuln047_myy3lra0/obj_dir//home/participant/opentitan/hw/ip/prim/rtl.sv
+%Error-PKGNODECL: //tmp/vuln_verify/VULN-047/tb_ascon_operation.sv:14:10: Package/class 'prim_ascon_pkg' not found, and needs to be predeclared (IEEE 1800-2017 26.3)
+   14 |   import prim_ascon_pkg::*;
+      |          ^~~~~~~~~~~~~~
+                  ... For error description see https://verilator.org/warn/PKGNODECL?v=4.210
+%Error: //tmp/vuln_verify/VULN-047/tb_ascon_operation.sv:14:10: Importing from missing package 'prim_ascon_pkg'
+   14 |   import prim_ascon_pkg::*;
+      |          ^~~~~~~~~~~~~~
+%Error: //tmp/vuln_verify/VULN-047/tb_ascon_operation.sv:17:18: syntax error, unexpected '=', expecting ',' or ';'
+   17 |   duplex_op_e op = ASCON_HASH;
+      |                  ^
+%Error: Exiting due to 4 error(s)
+Traceback (most recent call last):
+  File "/tmp/vuln_verify/VULN-047/exploit.py", line 88, in <module>
+    main()
+  File "/tmp/vuln_verify/VULN-047/exploit.py", line 69, in main
+    subprocess.run(
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/participant/verilator/bin/verilator', '-sv', '--cc', '--exe', '--build', '-j', '2', '-Wno-fatal', '-Wno-WIDTH', '-Wno-DECLFILENAME', '-Wno-UNOPTFLAT', '-I', '/home/participant/opentitan/hw/ip/prim/rtl', '--Mdir', '/tmp/poc_vuln047_myy3lra0/obj_dir', '--top-module', 'tb', '/tmp/vuln_verify/VULN-047/tb_ascon_operation.sv', '/tmp/vuln_verify/VULN-047/sim_main.cpp', '/home/participant/opentitan/hw/ip/prim/rtl/prim_ascon_pkg.sv']' returned non-zero exit status 1.

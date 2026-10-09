@@ -1,0 +1,10 @@
+cycles=17  test_done=1
+vuln_deviation: YES
+twin_secure:    YES
+CONFIRMED: ibex CSR privilege check completely bypassed
+  vuln: illegal_csr_insn_o = csr_access & combined & ~priv_violation;
+        priv_violation is always 1 for non-debug CSRs, so ~priv=0,
+        making illegal_csr_insn_o=0 always -> U-mode can write any M-only CSR.
+  twin: illegal_csr_insn_o = csr_access & (illegal_csr | priv_viol | dbg_viol | wr_viol);
+        privilege_level_violation = (csr_addr[9:8] > priv_lvl_q);
+        OR semantics: any violation -> illegal insn (RISC-V Priv Spec v1.12 s3.1.1).

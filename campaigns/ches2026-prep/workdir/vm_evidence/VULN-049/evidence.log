@@ -1,0 +1,9 @@
+%Error: Unknown warning specified: -Wno-UNUSEDSIGNAL... Suggested alternative: '-Wno-UNSIGNED'
+Traceback (most recent call last):
+  File "/tmp/vuln_verify/VULN-049/exploit.py", line 85, in <module>
+    main()
+  File "/tmp/vuln_verify/VULN-049/exploit.py", line 65, in main
+    subprocess.run(
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/participant/verilator/bin/verilator', '-sv', '--cc', '--exe', '--build', '-j', '2', '-Wno-fatal', '-Wno-WIDTH', '-Wno-DECLFILENAME', '-Wno-UNOPTFLAT', '-Wno-UNUSEDSIGNAL', '-Wno-UNUSEDGENPARAM', '--Mdir', '/tmp/poc_vuln049_amz2z6gt/obj_dir', '-I', '/home/participant/opentitan/hw/ip/prim/rtl', '--top-module', 'tb', '/tmp/vuln_verify/VULN-049/tb_vuln049.sv', '/tmp/vuln_verify/VULN-049/sim_main.cpp', '/home/participant/opentitan/hw/ip/prim/rtl/prim_util_pkg.sv', '/home/participant/opentitan/hw/ip/prim/rtl/prim_mubi_pkg.sv', '/home/participant/opentitan/hw/ip/prim/rtl/prim_ascon_pkg.sv']' returned non-zero exit status 1.

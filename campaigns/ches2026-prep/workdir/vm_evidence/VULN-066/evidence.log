@@ -1,0 +1,2 @@
+VERILATE FAILED
+build_vm.sh: line 14: /data_hdd/tzh24/miniconda3/pkgs/verilator-5.052-py311pl5321h11e3653_0/bin/verilator: No such file or directory

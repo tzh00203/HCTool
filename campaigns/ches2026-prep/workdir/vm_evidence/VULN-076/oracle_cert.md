@@ -1,0 +1,43 @@
+# Oracle Certification — VULN-076
+
+Generated: 2026-10-09 18:34 UTC
+VM verification exit code: 1 (1 = confirmed)
+Local verdict: None
+Fidelity: None
+VM result: VM-CONFIRMED
+
+## Twin Repair Diff
+
+(see RESULT.md for twin diff details)
+
+## Oracle References
+
+- oracle: cnt_err/escalate paths set fsm_err_o=1
+- Oracle:
+- `cnt_err` path (line 610): counter integrity error sets `fsm_err_o = 1'b1` — not an FSM glitch, same category as ecc_err
+- oracle: cnt_err/escalate set fsm_err_o=1
+- Oracle: cnt_err path (line 610) sets fsm_err_o=1; escalate_en_i path (line 610) sets fsm_err_o=1; both under SEC_CM: PART.FSM.LOCAL_ESC
+- SEC_CM declaration
+- SEC_CM gap
+
+## Evidence Log (excerpt)
+
+```
+make: Entering directory '/tmp/poc_vuln076_n1_0kiq6/obj_dir'
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o sim_main.o /tmp/vuln_verify/VULN-076/sim_main.cpp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /tools/verilator/4.210/share/verilator/include/verilated.cpp
+/usr/bin/perl /tools/verilator/4.210/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb.cpp Vtb___024root.cpp Vtb___024root__Slow.cpp Vtb__Syms.cpp > Vtb__ALL.cpp
+echo "" > Vtb__ALL.verilator_deplist.tmp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vtb__ALL.o Vtb__ALL.cpp
+Archive ar -rcs Vtb__ALL.a Vtb__ALL.o
+g++-11    sim_main.o verilated.o Vtb__ALL.a      -o Vtb
+rm Vtb__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/poc_vuln076_n1_0kiq6/obj_dir'
+ecc_err=1: vuln fsm_err_o=0  twin fsm_err_o=1
+reference: vuln escalate fsm_err_o=1  vuln cnt_err fsm_err_o=1
+CONFIRMED: otp_ctrl_part_buf.sv:601-606 ecc_err->ErrorSt doesn't set fsm_err_o
+  vuln: ecc_err block fsm_err_o=0 (inconsistent with cnt_err/escalate paths)
+  twin: ecc_err block fsm_err_o=1 (oracle: cnt_err/escalate set fsm_err_o=1
+        under same SEC_CM: PART.FSM.LOCAL_ESC; SVA EccErrorState_A only checks
+        state_q==ErrorSt, not fsm_err_o — assertion gap (漏检))
+```

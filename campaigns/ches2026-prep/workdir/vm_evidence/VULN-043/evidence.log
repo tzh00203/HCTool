@@ -1,0 +1,14 @@
+[Check 1] REBECCA insecurity documented in vuln: YES
+         Line 16: // A formal analysis using REBECCA (stable and transient mode) shows that this implementation is
+         Line 17: // not secure. It's usage is thus discouraged. It's included here mainly for reference.
+         Line 19: // For details on the REBECCA tool, see the following paper:
+[Check 2] Proper runtime SVA SecSBoxImpl==SBoxImplDom: NOT FOUND
+[Check 3] Inert lint-only checks (ASSERT_STATIC_LINT_ERROR): FOUND
+         hw/ip/aes/rtl/aes_cipher_control_fsm.sv:493: `ASSERT_STATIC_LINT_ERROR(AesCipherControlFsmSecSBoxImplNonDefault, SecSBoxImpl == SBoxImplDom)
+         hw/ip/aes/rtl/aes_sbox.sv:29: `ASSERT_STATIC_LINT_ERROR(AesSBoxSecSBoxImplNonDefault, SecSBoxImpl == SBoxImplDom)
+[Check 4] ASSERT_STATIC_LINT_ERROR is inert (no runtime effect): YES
+[Check 5] Twin has ASSERT_INIT(RebeccaInsecureSBox): YES
+
+VERDICT: CONFIRMED — REBECCA-insecure canright_masked SBox has no proper SVA guard
+Only ASSERT_STATIC_LINT_ERROR (lint-only, inert in simulation) exists at aes_sbox.sv:29
+Twin adds ASSERT_INIT that fires at simulation start when insecure SBox is instantiated

@@ -1,0 +1,21 @@
+make: Entering directory '/tmp/poc_VULN-028_jex6qlp5/obj_dir'
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o sim_main.o /tmp/vuln_verify/VULN-028/sim_main.cpp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /tools/verilator/4.210/share/verilator/include/verilated.cpp
+/usr/bin/perl /tools/verilator/4.210/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb.cpp Vtb___024root.cpp Vtb___024root__Slow.cpp Vtb__Syms.cpp > Vtb__ALL.cpp
+echo "" > Vtb__ALL.verilator_deplist.tmp
+g++-11  -I.  -MMD -I/tools/verilator/4.210/share/verilator/include -I/tools/verilator/4.210/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vtb__ALL.o Vtb__ALL.cpp
+Archive ar -rcs Vtb__ALL.a Vtb__ALL.o
+g++-11    sim_main.o verilated.o Vtb__ALL.a      -o Vtb
+rm Vtb__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/poc_VULN-028_jex6qlp5/obj_dir'
+fatal_prim_otp_alert=1, part_macro_errors=0, fatal_macro_error_q=0:
+  vuln: fatal_macro_error_d=0 escalate=0  (skips latch: YES)
+  twin: fatal_macro_error_d=1 escalate=1  (latches alert: YES)
+CONFIRMED: otp_ctrl.sv fatal_prim_otp_alert not latched into
+fatal_macro_error_q. fatal_macro_error_d (line 417) only ORs
+part_error[k]==MacroError (lines 427-437), never ORs
+fatal_prim_otp_alert (line 768). Pulse on otp_macro_i.fatal_alert
+does NOT set fatal_macro_error_q -> no escalation -> FSMs do not
+enter ErrorSt. 3 SVA assertions also commented out (lines 1489-1499).
+Twin adds fatal_prim_otp_alert to fatal_macro_error_d per
+IMPORTANT TODO at line 1485 and AlertIsFatal[1]=1 at line 591.

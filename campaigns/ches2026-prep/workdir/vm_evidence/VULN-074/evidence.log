@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/tmp/vuln_verify/VULN-074/exploit.py", line 62, in <module>
+    main()
+  File "/tmp/vuln_verify/VULN-074/exploit.py", line 38, in main
+    r = subprocess.run(
+        ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+NotADirectoryError: [Errno 20] Not a directory: '/home/participant/verilator/bin/verilator/bin/verilator'
